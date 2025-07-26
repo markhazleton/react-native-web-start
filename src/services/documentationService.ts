@@ -61,6 +61,17 @@ export class DocumentationService {
       size: 18432,
       lastModified: new Date("2024-01-20"),
     },
+    {
+      name: "THE_BUILDING_OF_REACT_NATIVE_WEB_START.md",
+      title: "The Building of React-native-web-start",
+      description:
+        "Complete article by Mark Hazleton detailing the entire development journey from GitHub repo creation to production deployment with documentation and version footer",
+      path: `${
+        import.meta.env.BASE_URL
+      }documentation/THE_BUILDING_OF_REACT_NATIVE_WEB_START.md`,
+      size: 65536,
+      lastModified: new Date("2025-07-26"),
+    },
   ];
 
   static async getDocumentationFiles(): Promise<DocumentationFile[]> {

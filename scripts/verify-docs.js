@@ -23,7 +23,8 @@ const expectedFiles = [
   'SETUP_GUIDE.md',
   'PROJECT_SUMMARY.md',
   'JOKE_FUNCTIONALITY_ANALYSIS.md',
-  'GITHUB_PAGES_PUBLISHING.md'
+  'GITHUB_PAGES_PUBLISHING.md',
+  'THE_BUILDING_OF_REACT_NATIVE_WEB_START.md'
 ];
 
 // Define paths to check
