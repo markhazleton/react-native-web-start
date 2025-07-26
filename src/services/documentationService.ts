@@ -40,6 +40,17 @@ export class DocumentationService {
       lastModified: new Date("2024-01-20"),
     },
     {
+      name: "GITHUB_PAGES_PUBLISHING.md",
+      title: "GitHub Pages Publishing Guide",
+      description:
+        "Comprehensive troubleshooting guide for GitHub Pages deployment with React Native Web and Vite",
+      path: `${
+        import.meta.env.BASE_URL
+      }documentation/GITHUB_PAGES_PUBLISHING.md`,
+      size: 25600,
+      lastModified: new Date("2025-07-26"),
+    },
+    {
       name: "JOKE_FUNCTIONALITY_ANALYSIS.md",
       title: "Joke Functionality Analysis",
       description:
