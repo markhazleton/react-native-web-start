@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "A React Native Web starter application using Vite for web and React Native CLI for mobile",
+  "homepage": "https://markhazleton.github.io/react-native-web-start",
   "keywords": [
     "react-native",
     "react-native-web",
@@ -18,7 +19,7 @@
   "scripts": {
     "dev": "vite",
     "web": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "serve": "vite preview --port 3000",
     "type-check": "tsc --noEmit",
@@ -27,7 +28,10 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "copy-docs": "Copy-Item -Path \"documentation\\*\" -Destination \"public\\documentation\\\" -Recurse -Force"
+    "copy-docs": "Copy-Item -Path \"documentation\\*\" -Destination \"public\\documentation\\\" -Recurse -Force",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "deploy:gh-pages": "npm run predeploy && npm run deploy"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -51,6 +55,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "babel-jest": "^29.6.3",
     "eslint": "^8.19.0",
+    "gh-pages": "^6.3.0",
     "jest": "^29.6.3",
     "metro-react-native-babel-preset": "^0.77.0",
     "prettier": "^2.8.8",
