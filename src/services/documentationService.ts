@@ -44,7 +44,9 @@ export class DocumentationService {
       title: "Joke Functionality Analysis",
       description:
         "Technical deep dive into API integration implementation and best practices",
-      path: `${import.meta.env.BASE_URL}documentation/JOKE_FUNCTIONALITY_ANALYSIS.md`,
+      path: `${
+        import.meta.env.BASE_URL
+      }documentation/JOKE_FUNCTIONALITY_ANALYSIS.md`,
       size: 18432,
       lastModified: new Date("2024-01-20"),
     },

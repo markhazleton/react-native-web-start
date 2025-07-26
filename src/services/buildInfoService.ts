@@ -1,4 +1,4 @@
-import buildInfo from '../buildInfo.json';
+import buildInfo from "../buildInfo.json";
 
 export interface BuildInfo {
   version: string;
@@ -27,9 +27,8 @@ export class BuildInfoService {
   }
 
   static getCommitString(): string {
-    const shortCommit = buildInfo.commit === 'local' 
-      ? 'local' 
-      : buildInfo.commit.substring(0, 7);
+    const shortCommit =
+      buildInfo.commit === "local" ? "local" : buildInfo.commit.substring(0, 7);
     return shortCommit;
   }
 }
