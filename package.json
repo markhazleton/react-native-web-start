@@ -32,6 +32,7 @@
     "copy-docs:win": "if not exist \"public\\documentation\" mkdir \"public\\documentation\" && Copy-Item -Path \"documentation\\*\" -Destination \"public\\documentation\\\" -Recurse -Force && Copy-Item -Path \"README.md\" -Destination \"public\\documentation\\\" -Force",
     "copy-docs:unix": "mkdir -p public/documentation && cp -r documentation/* public/documentation/ && cp README.md public/documentation/",
     "update-docs": "npm run copy-docs",
+    "verify-docs": "node scripts/verify-docs.js",
     "prebuild": "npm run copy-docs",
     "predeploy": "npm run copy-docs && npm run build",
     "deploy": "gh-pages -d dist",
