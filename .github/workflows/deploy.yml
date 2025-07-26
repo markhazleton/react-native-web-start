@@ -31,20 +31,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20"
           cache: "npm"
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
       - name: Generate build info
-        run: node scripts/generate-build-info.js
+        run: npm run generate-build-info
         env:
           GITHUB_SHA: ${{ github.sha }}
           NODE_ENV: production
 
       - name: Copy documentation
-        run: npm run copy-docs
+        run: mkdir -p public/documentation && cp -r documentation/* public/documentation/ && cp README.md public/documentation/
 
       - name: Build project
         run: npm run build

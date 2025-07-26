@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "vite",
     "web": "vite",
+    "generate-build-info": "node scripts/generate-build-info.js",
     "prebuild": "node scripts/generate-build-info.js && npm run copy-docs",
     "build": "vite build",
     "preview": "vite preview",
