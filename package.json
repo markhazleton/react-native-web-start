@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "vite",
     "web": "vite",
+    "prebuild": "node scripts/generate-build-info.js && npm run copy-docs",
     "build": "vite build",
     "preview": "vite preview",
     "serve": "vite preview --port 3000",
@@ -33,7 +34,6 @@
     "copy-docs:unix": "mkdir -p public/documentation && cp -r documentation/* public/documentation/ && cp README.md public/documentation/",
     "update-docs": "npm run copy-docs",
     "verify-docs": "node scripts/verify-docs.js",
-    "prebuild": "npm run copy-docs",
     "predeploy": "npm run copy-docs && npm run build",
     "deploy": "gh-pages -d dist",
     "deploy:gh-pages": "npm run predeploy && npm run deploy"
