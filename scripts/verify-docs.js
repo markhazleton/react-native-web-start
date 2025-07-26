@@ -22,7 +22,8 @@ const expectedFiles = [
   'COMPLETE_SETUP_GUIDE.md',
   'SETUP_GUIDE.md',
   'PROJECT_SUMMARY.md',
-  'JOKE_FUNCTIONALITY_ANALYSIS.md'
+  'JOKE_FUNCTIONALITY_ANALYSIS.md',
+  'GITHUB_PAGES_PUBLISHING.md'
 ];
 
 // Define paths to check
@@ -106,6 +107,7 @@ function generateReport() {
   console.log('📋 Project Summary: https://markhazleton.github.io/react-native-web-start/documentation/PROJECT_SUMMARY.md');
   console.log('🎭 Joke Analysis: https://markhazleton.github.io/react-native-web-start/documentation/JOKE_FUNCTIONALITY_ANALYSIS.md');
   console.log('⚙️ Setup Guide: https://markhazleton.github.io/react-native-web-start/documentation/SETUP_GUIDE.md');
+  console.log('🚀 GitHub Pages Guide: https://markhazleton.github.io/react-native-web-start/documentation/GITHUB_PAGES_PUBLISHING.md');
   console.log('');
   
   console.log(`${BLUE}🚀 Quick Commands${RESET}`);
