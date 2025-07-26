@@ -37,6 +37,7 @@
 ## ✨ Features
 
 ### 🎯 **Core Capabilities**
+
 - 🌐 **True Cross-Platform**: Web, iOS, and Android from a single codebase
 - ⚡ **Lightning Fast Development**: Vite with HMR for instant feedback
 - 🔒 **Type Safety**: Full TypeScript support with strict configuration
@@ -44,6 +45,7 @@
 - 🔄 **API Integration**: Production-ready HTTP client with error handling
 
 ### 🛠️ **Developer Experience**
+
 - 🎨 **Modern Tooling**: Latest React Native, Vite, and TypeScript versions
 - 📦 **Optimized Bundle**: Tree-shaking and code splitting out of the box
 - 🧪 **Testing Ready**: Jest configuration for unit and integration tests
@@ -51,6 +53,7 @@
 - 📚 **Rich Documentation**: In-app documentation browser with markdown support
 
 ### 🚀 **Production Features**
+
 - 🌍 **GitHub Pages Deployment**: Automated CI/CD with enhanced documentation sync
 - 📊 **Performance Monitoring**: Bundle analysis and optimization tips
 - 🔐 **Security**: Dependabot integration and vulnerability management
@@ -61,6 +64,7 @@
 ## 🏗️ Architecture
 
 ### **Tech Stack**
+
 | Component | Technology | Version | Purpose |
 |-----------|------------|---------|---------|
 | **Frontend Framework** | React Native | 0.74.0 | Cross-platform mobile development |
@@ -71,6 +75,7 @@
 | **HTTP Client** | Fetch API | Native | API communication and data fetching |
 
 ### **Project Structure**
+
 ```
 react-native-web-start/
 ├── 📁 src/                          # Source code
@@ -96,12 +101,14 @@ react-native-web-start/
 ## 🚀 Quick Start
 
 ### **Prerequisites**
+
 - 📦 **Node.js** 18+ ([Download](https://nodejs.org/))
 - 📱 **Mobile Development** (Optional):
   - iOS: Xcode 14+ (macOS only)
   - Android: Android Studio with SDK
 
 ### **🎯 One-Command Setup**
+
 ```bash
 # Clone and setup
 git clone https://github.com/markhazleton/react-native-web-start.git
@@ -113,6 +120,7 @@ npm run web
 🎉 **That's it!** Open [http://localhost:3000](http://localhost:3000) to see your app running.
 
 ### **📱 Mobile Development**
+
 ```bash
 # Start Metro bundler
 npm start
@@ -133,6 +141,7 @@ npm run ios        # iOS (macOS only)
 | 🤖 **Android** | ✅ Production Ready | Phone, Tablet | Cross-platform development |
 
 ### **Browser Compatibility**
+
 - ✅ Chrome 88+
 - ✅ Firefox 78+
 - ✅ Safari 14+
@@ -150,7 +159,9 @@ npm run ios        # iOS (macOS only)
 | **[🎭 Feature Analysis](./documentation/JOKE_FUNCTIONALITY_ANALYSIS.md)** | Technical deep dive into API integration | Advanced developers |
 
 ### **🔍 In-App Documentation**
+
 Access comprehensive documentation directly in the application:
+
 - Navigate to **Documentation** tab in the live app
 - Browse markdown files with syntax highlighting
 - Search functionality for quick reference
@@ -160,6 +171,7 @@ Access comprehensive documentation directly in the application:
 ## 🔧 Development
 
 ### **📋 Available Scripts**
+
 | Command | Description | Platform |
 |---------|-------------|----------|
 | `npm run dev` | Start development server | Web |
@@ -174,6 +186,7 @@ Access comprehensive documentation directly in the application:
 | `npm run deploy` | Deploy to GitHub Pages | Web |
 
 ### **🧪 Testing**
+
 ```bash
 npm test                    # Run all tests
 npm run test:watch         # Watch mode
@@ -181,6 +194,7 @@ npm run test:coverage      # Coverage report
 ```
 
 ### **📊 Bundle Analysis**
+
 ```bash
 npm run build              # Build for production
 npm run preview           # Serve locally to test
@@ -193,12 +207,15 @@ npm run preview           # Serve locally to test
 ### **🌐 Web Deployment**
 
 #### **GitHub Pages (Automated)**
+
 ```bash
 npm run deploy            # Deploys to GitHub Pages
 ```
+
 ✅ **Live Demo**: [https://markhazleton.github.io/react-native-web-start](https://markhazleton.github.io/react-native-web-start)
 
 #### **Other Platforms**
+
 - **Vercel**: `npx vercel --prod`
 - **Netlify**: Connect repository for automatic deployments
 - **AWS S3**: Upload `dist/` folder to S3 bucket
@@ -206,11 +223,13 @@ npm run deploy            # Deploys to GitHub Pages
 ### **� Mobile Deployment**
 
 #### **iOS App Store**
+
 1. Open project in Xcode
 2. Archive and validate
 3. Upload to App Store Connect
 
 #### **Google Play Store**
+
 1. Generate signed APK/AAB
 2. Upload to Google Play Console
 3. Release to production
@@ -222,27 +241,32 @@ npm run deploy            # Deploys to GitHub Pages
 ### **✅ Advantages of Using This Starter Kit**
 
 #### **🚀 Development Speed**
+
 - **70% faster project initialization** compared to setting up from scratch
 - Pre-configured toolchain eliminates hours of setup time
 - Battle-tested configurations reduce debugging time
 
 #### **🎯 Best Practices Built-In**
+
 - **TypeScript strict mode** for enterprise-grade type safety
 - **ESLint + Prettier** for consistent code quality
 - **Automated testing setup** with Jest configuration
 - **Security-first approach** with Dependabot integration
 
 #### **🌐 True Cross-Platform**
+
 - **Single codebase** for web, iOS, and Android
 - **95% code reuse** across platforms
 - **Consistent UI/UX** with platform-specific optimizations
 
 #### **📚 Learning & Onboarding**
+
 - **Comprehensive documentation** with real-world examples
 - **In-app documentation browser** for easy reference
 - **GitHub issue templates** for structured support
 
 #### **🔄 Production-Ready Features**
+
 - **Automated deployment** to GitHub Pages
 - **Bundle optimization** with tree-shaking
 - **Performance monitoring** and analysis tools
@@ -250,21 +274,25 @@ npm run deploy            # Deploys to GitHub Pages
 ### **⚠️ Considerations & Trade-offs**
 
 #### **📦 Bundle Size**
+
 - **Web bundle**: ~321KB (gzipped: ~100KB)
 - **Trade-off**: Larger than vanilla React apps, but includes full cross-platform support
 - **Mitigation**: Code splitting and lazy loading implemented
 
 #### **🔧 Learning Curve**
+
 - **Complexity**: Developers need to understand both web and mobile paradigms
 - **Platform differences**: Some platform-specific knowledge required
 - **Toolchain**: Multiple build systems (Vite + Metro)
 
 #### **🎨 Design Limitations**
+
 - **Shared components**: May not leverage platform-specific UI patterns
 - **Performance**: Some web optimizations may not apply to mobile
 - **Native features**: Limited access to device-specific APIs
 
 #### **🔄 Maintenance Overhead**
+
 - **Multiple platforms**: Testing and debugging across platforms
 - **Dependencies**: Managing React Native and web-specific packages
 - **Updates**: Coordinating updates across different ecosystems
@@ -276,12 +304,14 @@ npm run deploy            # Deploys to GitHub Pages
 ### **🎯 When to Use This Starter Kit**
 
 #### **✅ Ideal Use Cases**
+
 - 📊 **Business applications** with shared logic across platforms
 - 🎯 **MVPs** requiring rapid cross-platform deployment
 - 👥 **Small to medium teams** wanting to maximize development efficiency
 - 🚀 **Startups** needing to reach multiple platforms quickly
 
 #### **⚠️ Consider Alternatives When**
+
 - 🎮 **Performance-critical applications** (games, intensive graphics)
 - 📱 **Platform-specific features** are core to the application
 - 👥 **Large teams** with dedicated platform specialists
@@ -290,12 +320,14 @@ npm run deploy            # Deploys to GitHub Pages
 ### **📏 Development Guidelines**
 
 #### **🏗️ Architecture Principles**
+
 - **Component composition** over inheritance
 - **Service layer separation** for API and business logic
 - **Type-first development** with TypeScript
 - **Platform-agnostic core** with platform-specific adaptations
 
 #### **📱 Cross-Platform Strategy**
+
 - **Mobile-first design** approach
 - **Progressive enhancement** for web features
 - **Shared styling** with platform-specific overrides
@@ -308,16 +340,19 @@ npm run deploy            # Deploys to GitHub Pages
 We welcome contributions! Please see our contributing guidelines:
 
 ### **🐛 Found a Bug?**
+
 1. **Search existing issues** to avoid duplicates
 2. **Use our bug report template** for detailed reports
 3. **Include reproduction steps** and environment details
 
 ### **💡 Have a Feature Request?**
+
 1. **Check the roadmap** in our project board
 2. **Use our feature request template** for structured proposals
 3. **Discuss in GitHub Discussions** for community input
 
 ### **🔧 Want to Contribute Code?**
+
 1. **Fork the repository** and create a feature branch
 2. **Follow our coding standards** (ESLint + Prettier)
 3. **Add tests** for new functionality
@@ -325,6 +360,7 @@ We welcome contributions! Please see our contributing guidelines:
 5. **Submit a pull request** using our PR template
 
 ### **📋 Issue Templates**
+
 - 🐛 **[Bug Report](./.github/ISSUE_TEMPLATE/bug_report.md)**
 - ✨ **[Feature Request](./.github/ISSUE_TEMPLATE/feature_request.md)**
 - 📚 **[Documentation](./.github/ISSUE_TEMPLATE/documentation.md)**
@@ -337,6 +373,7 @@ We welcome contributions! Please see our contributing guidelines:
 ### **🎯 Current Version: 1.0.0**
 
 #### **✅ Completed Features**
+
 - ✅ Cross-platform base setup (Web, iOS, Android)
 - ✅ TypeScript integration with strict configuration
 - ✅ Vite 7.0 with optimized build pipeline
@@ -347,6 +384,7 @@ We welcome contributions! Please see our contributing guidelines:
 - ✅ Comprehensive documentation
 
 #### **🚧 Roadmap**
+
 - 🔲 **v1.1**: Testing framework integration (Jest + React Native Testing Library)
 - 🔲 **v1.2**: CI/CD pipeline with GitHub Actions
 - 🔲 **v1.3**: Expo integration for easier mobile development
@@ -354,6 +392,7 @@ We welcome contributions! Please see our contributing guidelines:
 - 🔲 **v2.0**: Micro-frontend architecture support
 
 ### **📈 Statistics**
+
 - **Bundle Size**: 321KB (100KB gzipped)
 - **Build Time**: <1 second (development), ~870ms (production)
 - **Platforms**: 3 (Web, iOS, Android)
@@ -365,17 +404,20 @@ We welcome contributions! Please see our contributing guidelines:
 ## 🙏 Acknowledgments
 
 ### **🌟 Core Technologies**
+
 - **[React Native Team](https://reactnative.dev/)** - For the amazing mobile framework
 - **[React Native Web](https://necolas.github.io/react-native-web/)** - For enabling web compatibility
 - **[Vite Team](https://vitejs.dev/)** - For the incredible development experience
 - **[TypeScript Team](https://www.typescriptlang.org/)** - For type safety and developer productivity
 
 ### **🎯 Community & Inspiration**
+
 - **[JokeAPI](https://jokeapi.dev/)** - For providing the demo API
 - **[GitHub](https://github.com)** - For hosting and collaboration tools
 - **React Native Web Community** - For contributions and feedback
 
 ### **💡 Special Thanks**
+
 - All contributors who have helped improve this starter kit
 - Developers who have provided feedback and bug reports
 - The open-source community for making this possible
@@ -385,12 +427,14 @@ We welcome contributions! Please see our contributing guidelines:
 ## 📞 Support & Community
 
 ### **🆘 Need Help?**
+
 - 🐛 **Bug Reports**: [Create an issue](https://github.com/markhazleton/react-native-web-start/issues/new?template=bug_report.md)
 - 💡 **Feature Requests**: [Request a feature](https://github.com/markhazleton/react-native-web-start/issues/new?template=feature_request.md)
 - ❓ **Questions**: [Start a discussion](https://github.com/markhazleton/react-native-web-start/discussions)
 - 📚 **Documentation**: [Browse our docs](./documentation/)
 
 ### **🌟 Show Your Support**
+
 - ⭐ **Star this repository** if you find it helpful
 - 🍴 **Fork and customize** for your projects
 - 📢 **Share with the community** to help others

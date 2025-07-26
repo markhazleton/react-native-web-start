@@ -9,6 +9,7 @@ assignees: ['markhazleton']
 ## 📚 Documentation Issue
 
 **Type of Documentation Issue**
+
 - [ ] 🐛 Error or mistake in existing documentation
 - [ ] 📝 Missing documentation for existing feature
 - [ ] ✨ Suggestion for new documentation
@@ -20,6 +21,7 @@ assignees: ['markhazleton']
 ## 📍 Location
 
 **Where is the documentation issue?**
+
 - [ ] README.md
 - [ ] `/documentation` folder
 - [ ] In-app documentation browser
@@ -55,6 +57,7 @@ What should the documentation say instead:
 ## 🎯 Audience & Use Case
 
 **Target Audience**
+
 - [ ] 👶 Complete beginners to React Native Web
 - [ ] 🔰 Developers new to this starter kit
 - [ ] 💪 Experienced developers
@@ -67,6 +70,7 @@ Describe the specific scenario where users would need this documentation:
 ## 📱 Platform Relevance
 
 **Which platforms does this documentation cover?**
+
 - [ ] Web development
 - [ ] iOS development  
 - [ ] Android development
@@ -77,6 +81,7 @@ Describe the specific scenario where users would need this documentation:
 ## 🎨 Presentation Suggestions
 
 **Format Preferences**
+
 - [ ] Step-by-step tutorial
 - [ ] Code examples with explanations
 - [ ] Screenshots or diagrams
@@ -86,6 +91,7 @@ Describe the specific scenario where users would need this documentation:
 - [ ] Troubleshooting guide
 
 **Visual Aids Needed**
+
 - [ ] Screenshots
 - [ ] Diagrams/flowcharts
 - [ ] Code examples
@@ -125,12 +131,14 @@ Have you seen others struggle with this area? Any relevant discussions?
 ---
 
 **Priority Level**
+
 - [ ] 🔴 Critical (blocks user onboarding)
 - [ ] 🟡 High (frequently needed)
 - [ ] 🟢 Medium (helpful improvement)
 - [ ] 🔵 Low (nice to have)
 
 **Contribution Offer**
+
 - [ ] I can write this documentation
 - [ ] I can provide technical review
 - [ ] I can provide screenshots/examples

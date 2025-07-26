@@ -20,6 +20,7 @@ A clear and concise description of what actually happened.
 ## 🔄 Reproduction Steps
 
 **Steps to reproduce the behavior:**
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
@@ -35,12 +36,14 @@ If possible, provide a minimal code example or link to a repo that reproduces th
 ## 🌍 Environment
 
 **Platform(s) affected:**
+
 - [ ] Web (Browser)
 - [ ] iOS
 - [ ] Android
 - [ ] All platforms
 
 **Environment Details:**
+
 - **OS**: [e.g., macOS 13.0, Windows 11, Ubuntu 22.04]
 - **Node.js version**: [e.g., 18.17.0]
 - **npm/yarn version**: [e.g., npm 9.6.7]
@@ -49,6 +52,7 @@ If possible, provide a minimal code example or link to a repo that reproduces th
 - **React Native Web Starter version**: [e.g., 1.0.0]
 
 **Package versions:**
+
 ```json
 {
   "react-native": "x.x.x",
@@ -64,6 +68,7 @@ If possible, provide a minimal code example or link to a repo that reproduces th
 If applicable, add screenshots to help explain your problem.
 
 **Console Logs**
+
 ```
 Paste any relevant console logs or error messages here
 ```
@@ -93,6 +98,7 @@ Link to any related issues or discussions.
 ---
 
 **Priority Level**
+
 - [ ] 🔴 Critical (blocks development/production)
 - [ ] 🟡 High (significant impact)
 - [ ] 🟢 Medium (moderate impact)

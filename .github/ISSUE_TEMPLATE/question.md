@@ -24,6 +24,7 @@ Describe what you've already attempted:
 ```
 
 **Platform(s) involved:**
+
 - [ ] Web
 - [ ] iOS  
 - [ ] Android
@@ -32,12 +33,14 @@ Describe what you've already attempted:
 ## 📚 Research Done
 
 **Documentation checked:**
+
 - [ ] README.md
 - [ ] Setup guides in `/documentation`
 - [ ] In-app documentation browser
 - [ ] Searched existing issues/discussions
 
 **External resources consulted:**
+
 - [ ] React Native Web documentation
 - [ ] Vite documentation
 - [ ] TypeScript documentation
@@ -47,6 +50,7 @@ Describe what you've already attempted:
 ## 🌍 Environment
 
 **Basic setup:**
+
 - **OS**: [e.g., macOS, Windows, Linux]
 - **Node.js version**: [e.g., 18.17.0]
 - **Starter kit version**: [e.g., 1.0.0]
@@ -58,6 +62,7 @@ Add any other context, screenshots, or examples that might help answer your ques
 ---
 
 **Question Type:**
+
 - [ ] 🏗️ Architecture/design decision
 - [ ] 🔧 Configuration/setup help
 - [ ] 🐛 Troubleshooting

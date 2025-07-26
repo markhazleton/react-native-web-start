@@ -16,6 +16,7 @@ We actively support and provide security updates for the following versions:
 For security vulnerabilities, please **DO NOT** create a public GitHub issue. Instead, please report security vulnerabilities privately to ensure responsible disclosure.
 
 **Contact Methods:**
+
 - **Email**: [markh@markhazleton.com](mailto:markh@markhazleton.com)
 - **Subject**: `[SECURITY] React Native Web Starter - [Brief Description]`
 
@@ -51,6 +52,7 @@ We appreciate the security research community and will:
 ### For Users
 
 1. **Keep Dependencies Updated**
+
    ```bash
    npm audit
    npm update

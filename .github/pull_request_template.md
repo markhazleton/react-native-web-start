@@ -25,6 +25,7 @@ Relates to #[issue-number]
 ## 🌍 Platform Impact
 
 **Which platforms are affected by this change?**
+
 - [ ] 🌐 Web
 - [ ] 📱 iOS
 - [ ] 🤖 Android
@@ -35,6 +36,7 @@ Relates to #[issue-number]
 ## 🧪 Testing
 
 **How has this been tested?**
+
 - [ ] Unit tests
 - [ ] Integration tests
 - [ ] Manual testing on web
@@ -43,6 +45,7 @@ Relates to #[issue-number]
 - [ ] Cross-platform compatibility verified
 
 **Test Configuration:**
+
 - **Node.js version**: [e.g., 18.17.0]
 - **Browsers tested**: [e.g., Chrome 115, Safari 16, Firefox 116]
 - **Mobile devices tested**: [e.g., iPhone 14 Pro, Pixel 7]
@@ -58,6 +61,7 @@ If applicable, provide a link to test the changes.
 ## 🔍 Code Review Checklist
 
 ### **General**
+
 - [ ] Code follows the project's coding conventions
 - [ ] Self-review completed
 - [ ] Code is self-documenting or adequately commented
@@ -65,24 +69,28 @@ If applicable, provide a link to test the changes.
 - [ ] TypeScript types are properly defined
 
 ### **Functionality**
+
 - [ ] Changes work as expected
 - [ ] Edge cases have been considered
 - [ ] Error handling is appropriate
 - [ ] Performance impact is minimal
 
 ### **Cross-Platform**
+
 - [ ] Web compatibility maintained
 - [ ] Mobile compatibility maintained (if applicable)
 - [ ] Responsive design principles followed
 - [ ] Platform-specific optimizations implemented where needed
 
 ### **Testing**
+
 - [ ] Existing tests pass
 - [ ] New tests added for new functionality
 - [ ] Test coverage is adequate
 - [ ] Integration tests updated if needed
 
 ### **Documentation**
+
 - [ ] README updated if needed
 - [ ] Documentation files updated if needed
 - [ ] Code comments added where necessary
@@ -91,17 +99,21 @@ If applicable, provide a link to test the changes.
 ## 🔗 Dependencies
 
 **New Dependencies Added:**
+
 - package-name@version - reason for addition
 
 **Dependencies Removed:**
+
 - package-name@version - reason for removal
 
 **Dependencies Updated:**
+
 - package-name: old-version → new-version - reason for update
 
 ## 🚨 Breaking Changes
 
 **Are there any breaking changes?**
+
 - [ ] No breaking changes
 - [ ] Breaking changes (describe below)
 
@@ -129,6 +141,7 @@ Any follow-up work or considerations for future PRs.
 - [ ] Any dependent changes have been merged and published
 
 **Ready for Review**
+
 - [ ] This PR is ready for review
 - [ ] This is a draft PR (work in progress)
 
