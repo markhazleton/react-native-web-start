@@ -36,7 +36,8 @@
     "verify-docs": "node scripts/verify-docs.js",
     "predeploy": "npm run copy-docs && npm run build",
     "deploy": "gh-pages -d dist",
-    "deploy:gh-pages": "npm run predeploy && npm run deploy"
+    "deploy:gh-pages": "npm run predeploy && npm run deploy",
+    "deploy:manual": "npm run predeploy && npm run deploy"
   },
   "dependencies": {
     "react": "18.2.0",
