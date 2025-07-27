@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "name": "react-native-web-vite-start",
+  "description": "A React Native Web starter application using Vite for web and React Native CLI for mobile",
+  "homepage": "https://markhazleton.github.io/react-native-web-start",
+  "buildTime": "2025-07-27T15:19:07.490Z",
+  "buildTimestamp": 1753629547491,
+  "buildDate": "July 27, 2025 at 10:19 AM CDT",
+  "buildDateShort": "7/27/2025",
+  "buildTimeShort": "10:19:07 AM",
+  "commit": "4832667417d9b4c405454d3394eb9091be234194",
+  "commitShort": "4832667",
+  "gitBranch": "main",
+  "gitTag": "\"\"",
+  "environment": "development",
+  "buildNumber": "local",
+  "nodeVersion": "v24.2.0",
+  "platform": "win32",
+  "arch": "x64",
+  "userAgent": "npm/11.4.2 node/v24.2.0 win32 x64 workspaces/false"
+}
