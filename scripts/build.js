@@ -14,6 +14,11 @@ console.log('');
 // Define build steps
 const buildSteps = [
   {
+    name: 'Verify Project Structure',
+    command: 'node scripts/verify-structure.js',
+    description: 'Verify all required files exist for the build'
+  },
+  {
     name: 'Generate Build Info',
     command: 'node scripts/generate-build-info.js',
     description: 'Create build metadata in packages/shared/src/buildInfo.json'

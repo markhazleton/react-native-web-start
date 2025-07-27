@@ -1,6 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import fs from "fs";
+
+// Verify that the shared package exists
+const sharedPath = path.resolve(__dirname, "packages/shared/src");
+if (!fs.existsSync(sharedPath)) {
+  throw new Error(`Shared package not found at: ${sharedPath}`);
+}
 
 export default defineConfig({
   plugins: [react()],
@@ -12,7 +19,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "react-native": "react-native-web",
+      "@shared": path.resolve(__dirname, "packages/shared/src"),
     },
+    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
   },
   optimizeDeps: {
     include: ["react-native-web"],
