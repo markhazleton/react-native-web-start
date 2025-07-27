@@ -24,6 +24,7 @@ Before starting, ensure you have the following installed:
 - **Git** (for version control)
 
 Verify your installations:
+
 ```bash
 node --version
 npm --version
@@ -223,7 +224,7 @@ Create `index.html` in the root directory:
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/PromptSpark.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React Native Web Vite App</title>
     <style>
@@ -470,11 +471,13 @@ npm run preview
 ### Enhanced Features to Add
 
 1. **State Management**
+
    ```bash
    npm install @reduxjs/toolkit react-redux
    ```
 
 2. **Styling Solutions**
+
    ```bash
    npm install styled-components
    # or
@@ -482,16 +485,19 @@ npm run preview
    ```
 
 3. **Testing Setup**
+
    ```bash
    npm install -D @testing-library/react @testing-library/jest-dom vitest
    ```
 
 4. **Linting and Formatting**
+
    ```bash
    npm install -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier
    ```
 
 5. **PWA Features**
+
    ```bash
    npm install -D vite-plugin-pwa
    ```

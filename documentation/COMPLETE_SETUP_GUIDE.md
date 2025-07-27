@@ -21,21 +21,25 @@ This comprehensive guide provides step-by-step instructions to create a React Na
 
 ## Prerequisites
 
-### Required for All Platforms:
+### Required for All Platforms
+
 - **Node.js** (version 18 or higher)
 - **npm** or **yarn** package manager
 - **Git** (for version control)
 
-### Required for Mobile Development:
+### Required for Mobile Development
+
 - **React Native CLI**: `npm install -g @react-native-community/cli`
 - **Watchman** (for macOS users): `brew install watchman`
 
-### For iOS Development (macOS only):
+### For iOS Development (macOS only)
+
 - **Xcode** (latest version from App Store)
 - **iOS Simulator** (included with Xcode)
 - **CocoaPods**: `sudo gem install cocoapods`
 
-### For Android Development:
+### For Android Development
+
 - **Android Studio** with Android SDK
 - **Java Development Kit (JDK)** version 17
 - **Android Virtual Device (AVD)** configured
@@ -319,7 +323,7 @@ Create `index.html` in the root directory:
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/PromptSpark.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>React Native Web Vite Starter</title>
     <style>
@@ -542,6 +546,7 @@ npm run ios
 ### Step 21: iOS Setup (macOS only)
 
 1. **Install iOS dependencies:**
+
    ```bash
    cd ios && pod install && cd ..
    ```
@@ -554,6 +559,7 @@ npm run ios
 ### Step 22: Android Setup
 
 1. **Configure Android SDK paths:**
+
    ```bash
    # Add to your shell profile (.bashrc, .zshrc, etc.)
    export ANDROID_HOME=$HOME/Library/Android/sdk  # macOS
@@ -566,6 +572,7 @@ npm run ios
    - Choose a device and API level
 
 3. **Run on Android:**
+
    ```bash
    npm run android
    ```
@@ -585,6 +592,7 @@ npm run preview
 ### Step 24: Build Mobile Applications
 
 **For Android:**
+
 ```bash
 cd android
 ./gradlew assembleRelease  # Linux/macOS
@@ -592,6 +600,7 @@ gradlew assembleRelease    # Windows
 ```
 
 **For iOS:**
+
 1. Open `ios/ReactNativeWebViteStart.xcworkspace` in Xcode
 2. Select "Generic iOS Device" or your target device
 3. Product → Archive
@@ -602,6 +611,7 @@ gradlew assembleRelease    # Windows
 ### Web Deployment Options
 
 1. **Vercel:**
+
    ```bash
    npm install -D vercel
    npx vercel --prod
@@ -613,6 +623,7 @@ gradlew assembleRelease    # Windows
    - Publish directory: `dist`
 
 3. **GitHub Pages:**
+
    ```bash
    npm install -D gh-pages
    npm run build
@@ -646,17 +657,20 @@ gradlew assembleRelease    # Windows
    - Keep React versions consistent between dependencies
 
 4. **Metro Bundler Issues:**
+
    ```bash
    npx react-native start --reset-cache
    ```
 
 5. **iOS Build Issues:**
+
    ```bash
    cd ios && pod install && cd ..
    npx react-native run-ios --clean
    ```
 
 6. **Android Build Issues:**
+
    ```bash
    cd android && ./gradlew clean && cd ..
    npx react-native run-android --clean
@@ -667,6 +681,7 @@ gradlew assembleRelease    # Windows
 ### Cross-Platform Development
 
 1. **Use Platform-Specific Code When Needed:**
+
    ```typescript
    import { Platform } from 'react-native'
    
@@ -697,6 +712,7 @@ gradlew assembleRelease    # Windows
    - Test on various devices and screen sizes
 
 4. **Handle Platform-Specific APIs:**
+
    ```typescript
    if (Platform.OS === 'web') {
      window.open(url, '_blank')
@@ -717,17 +733,20 @@ gradlew assembleRelease    # Windows
 ### Enhanced Features to Add
 
 1. **State Management:**
+
    ```bash
    npm install @reduxjs/toolkit react-redux
    ```
 
 2. **Navigation Libraries:**
+
    ```bash
    npm install @react-navigation/native @react-navigation/native-stack
    npm install @react-navigation/bottom-tabs
    ```
 
 3. **UI Component Libraries:**
+
    ```bash
    npm install react-native-elements
    # or
@@ -735,12 +754,14 @@ gradlew assembleRelease    # Windows
    ```
 
 4. **Testing Setup:**
+
    ```bash
    npm install -D @testing-library/react-native
    npm install -D detox  # E2E testing
    ```
 
 5. **Styling Solutions:**
+
    ```bash
    npm install styled-components
    # or
@@ -748,6 +769,7 @@ gradlew assembleRelease    # Windows
    ```
 
 6. **PWA Features (Web):**
+
    ```bash
    npm install -D vite-plugin-pwa
    ```

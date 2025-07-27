@@ -67,8 +67,8 @@ const buildInfo = {
   userAgent: process.env.npm_config_user_agent || 'unknown'
 };
 
-// Write build info to src directory
-const buildInfoPath = path.join(__dirname, '..', 'src', 'buildInfo.json');
+// Write build info to shared directory (single source of truth)
+const buildInfoPath = path.join(__dirname, '..', 'packages', 'shared', 'src', 'buildInfo.json');
 fs.writeFileSync(buildInfoPath, JSON.stringify(buildInfo, null, 2));
 
 console.log('✅ Build info generated successfully');

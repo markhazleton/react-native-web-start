@@ -1,0 +1,22 @@
+# Ignore very large image files
+*.tiff
+*.bmp
+*.psd
+*.ai
+
+# Ignore temporary files
+.DS_Store
+Thumbs.db
+
+# Ignore backup files
+*.bak
+*~
+
+# Allow these common formats
+!*.svg
+!*.png
+!*.jpg
+!*.jpeg
+!*.gif
+!*.ico
+!*.webp

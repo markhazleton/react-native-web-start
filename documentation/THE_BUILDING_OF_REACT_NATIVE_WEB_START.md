@@ -85,15 +85,18 @@ This structure follows enterprise patterns I've successfully implemented in WebS
 Selecting the right technology stack was crucial for long-term success. After extensive research and testing, I chose:
 
 **Core Framework:**
+
 - **React Native 0.74.0**: Latest stable version with improved performance
 - **React Native Web 0.19.12**: Mature web compilation layer
 - **TypeScript 5.2.2**: Strict type safety with latest language features
 
 **Build System:**
+
 - **Vite 7.0.6**: Lightning-fast development server with optimal bundling
 - **ESBuild**: Ultra-fast TypeScript compilation and minification
 
 **Development Tools:**
+
 - **ESLint & Prettier**: Code quality and formatting standards
 - **Husky**: Git hooks for pre-commit validation
 - **Jest**: Testing framework for unit and integration tests
@@ -103,6 +106,7 @@ Selecting the right technology stack was crucial for long-term success. After ex
 This decision deserves special attention as it significantly impacts developer experience:
 
 **Vite Advantages:**
+
 - **Cold start performance**: 10x faster than Webpack for initial builds
 - **Hot Module Replacement**: Sub-second updates during development
 - **Modern defaults**: ES modules, tree-shaking, and optimal chunking
@@ -918,10 +922,12 @@ This ensures every deployment is uniquely identifiable and traceable.
 One of the most complex issues was handling GitHub Pages' subpath routing. GitHub Pages serves repositories at `username.github.io/repository-name`, but the application expected to be served from the root path.
 
 **Problem:**
+
 - Development: `http://localhost:5173/`
 - GitHub Pages: `https://markhazleton.github.io/react-native-web-start/`
 
 **Solution:**
+
 ```typescript
 export const getWebBaseUrl = (): string => {
   if (!isWeb) return '';
@@ -946,6 +952,7 @@ export const getWebBaseUrl = (): string => {
 The most challenging technical issue was resolving React Native Web's peer dependency conflicts:
 
 **Error:**
+
 ```
 npm ERR! peer dep missing: react@"^18.0.0", required by react-native-web@0.19.12
 ```
@@ -954,6 +961,7 @@ npm ERR! peer dep missing: react@"^18.0.0", required by react-native-web@0.19.12
 React Native 0.74 uses React 18, but some dependencies had stricter version requirements.
 
 **Solution:**
+
 1. Updated all React-related dependencies to compatible versions
 2. Used `--legacy-peer-deps` flag in both development and CI/CD
 3. Implemented proper TypeScript types for cross-platform compatibility
@@ -963,9 +971,11 @@ React Native 0.74 uses React 18, but some dependencies had stricter version requ
 Multiple build failures occurred during deployment optimization:
 
 **Issue 1: Vite Crypto Hash Error**
+
 ```
 Error: Cannot access 'crypto.hash' before initialization
 ```
+
 *Solution:* Upgraded to Node.js 20 for proper crypto module support.
 
 **Issue 2: Missing Static Assets**
@@ -990,7 +1000,7 @@ As someone who builds web applications professionally, SEO was a critical consid
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/PromptSpark.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <!-- SEO Meta Tags -->
@@ -1029,6 +1039,7 @@ As someone who builds web applications professionally, SEO was a critical consid
 Performance was optimized through several strategies:
 
 **1. Code Splitting:**
+
 ```typescript
 // Lazy loading for better performance
 const DocumentationScreen = React.lazy(() => import('./screens/DocumentationScreen'));
@@ -1037,17 +1048,20 @@ const AboutScreen = React.lazy(() => import('./screens/AboutScreen'));
 
 **2. Bundle Analysis:**
 Vite's built-in bundle analyzer helped identify optimization opportunities:
+
 ```bash
 npm run build -- --analyze
 ```
 
 **3. Asset Optimization:**
+
 - SVG icons instead of raster images
 - Optimized font loading
 - Compressed static assets
 
 **4. Caching Strategy:**
 Documentation service implements intelligent caching:
+
 ```typescript
 private cache = new Map<string, string>();
 
@@ -1084,6 +1098,7 @@ Being able to identify exactly which version is deployed saves hours of debuggin
 
 **1. Service Layer Pattern**
 Abstracting API calls and platform-specific logic into services made the codebase maintainable:
+
 ```typescript
 // Clean separation of concerns
 export const documentationService = new DocumentationService();
@@ -1092,6 +1107,7 @@ export const apiService = new ApiService();
 
 **2. Configuration-Driven Development**
 Using configuration objects instead of hardcoded values made the application adaptable:
+
 ```typescript
 export const DOCUMENTATION_FILES: DocumentationFile[] = [
   // Configuration-driven file list
@@ -1100,6 +1116,7 @@ export const DOCUMENTATION_FILES: DocumentationFile[] = [
 
 **3. Progressive Enhancement**
 Building core functionality first, then adding platform-specific enhancements:
+
 ```typescript
 // Works everywhere, enhanced for web
 if (isWeb) {
@@ -1145,6 +1162,7 @@ Integrating application performance monitoring for production deployments.
 ### Community Contributions
 
 The project is designed to be community-driven:
+
 - Clear contribution guidelines
 - Issue templates for bug reports and feature requests
 - Comprehensive documentation for new contributors
@@ -1153,6 +1171,7 @@ The project is designed to be community-driven:
 ### Enterprise Adoption
 
 Based on patterns successful in WebSpark and other production applications:
+
 - Scalable architecture patterns
 - Security best practices
 - Performance optimization techniques
@@ -1177,6 +1196,7 @@ The future of cross-platform development is bright, and react-native-web-start p
 **Mark Hazleton** is a Solutions Architect with extensive experience building enterprise web applications. He is the creator of WebSpark, TeachSpark, ArtSpark, and PromptSpark – web applications that serve thousands of users worldwide. With a focus on scalable architecture, performance optimization, and developer experience, Mark brings real-world production experience to every project.
 
 Connect with Mark:
+
 - **Website:** [markhazleton.com](https://markhazleton.com)
 - **GitHub:** [github.com/markhazleton](https://github.com/markhazleton)
 - **LinkedIn:** [linkedin.com/in/markhazleton](https://linkedin.com/in/markhazleton)

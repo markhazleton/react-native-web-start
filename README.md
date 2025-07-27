@@ -78,21 +78,34 @@
 
 ```
 react-native-web-start/
-├── 📁 src/                          # Source code
-│   ├── 📁 components/               # Reusable UI components
-│   │   ├── 📁 navigation/           # Navigation components
-│   │   └── 📁 screens/              # Screen components
-│   ├── 📁 services/                 # API and business logic
-│   ├── 📁 types/                    # TypeScript definitions
-│   ├── 📄 App.tsx                   # Main application component
-│   └── 📄 main.tsx                  # Web entry point
+├── 📁 packages/                     # Monorepo packages
+│   ├── 📁 shared/                   # Shared components and logic
+│   │   └── 📁 src/                  # Single source of truth
+│   │       ├── 📁 components/       # Reusable UI components
+│   │       │   ├── 📁 navigation/   # Navigation components
+│   │       │   └── 📁 screens/      # Screen components
+│   │       ├── 📁 services/         # API and business logic
+│   │       ├── 📁 types/            # TypeScript definitions
+│   │       └── 📄 App.tsx           # Main application component
+│   ├── 📁 web/                      # Web-specific configuration
+│   └── 📁 mobile/                   # Mobile-specific configuration
+├── 📁 assets/                       # Organized source assets
+│   ├── 📁 logos/                    # Logo files (PromptSpark.svg)
+│   ├── 📁 mobile/                   # Mobile app icons
+│   └── 📁 web/                      # Web-specific assets
+├── 📁 scripts/                      # Build automation scripts
+│   ├── 📄 build.js                  # Comprehensive build pipeline
+│   ├── 📄 clean.js                  # Clean build artifacts
+│   ├── 📄 copy-assets.js           # Asset management
+│   └── 📄 generate-build-info.js   # Dynamic build metadata
 ├── 📁 documentation/                # Comprehensive documentation
-├── 📁 public/                       # Static assets
+├── 📁 public/                       # Generated public assets
 ├── 📁 .github/                      # GitHub templates and workflows
-├── 📄 index.html                    # Web HTML template
-├── 📄 index.js                      # Mobile entry point
+├── 📄 src/main.tsx                 # Web entry point (imports from shared)
+├── 📄 index.html                   # Web HTML template
+├── 📄 index.js                     # Mobile entry point
 ├── 📄 vite.config.ts               # Vite configuration
-├── 📄 metro.config.js              # React Native configuration
+├── 📄 metro.config.cjs             # React Native configuration
 └── 📄 package.json                 # Dependencies and scripts
 ```
 
@@ -175,9 +188,11 @@ Access comprehensive documentation directly in the application:
 | Command | Description | Platform |
 |---------|-------------|----------|
 | `npm run dev` | Start development server | Web |
-| `npm run build` | Production build | Web |
+| `npm run build` | Production build with full pipeline | Web |
+| `npm run clean` | Clean all build artifacts | All |
 | `npm run preview` | Preview production build | Web |
 | `npm start` | Start Metro bundler | Mobile |
+| `npm run mobile` | Start mobile development | Mobile |
 | `npm run android` | Run on Android | Mobile |
 | `npm run ios` | Run on iOS | Mobile |
 | `npm test` | Run test suite | All |
@@ -450,107 +465,55 @@ We welcome contributions! Please see our contributing guidelines:
 
 ---
 
+---
+
 **Built with ❤️ by [Mark Hazleton](https://github.com/markhazleton)**
 
 *Licensed under [MIT License](./LICENSE) | Copyright © 2025*
 
-</div>
-```
+---
 
-### Running on Different Platforms
+## 📞 Quick Reference
+
+### **🚀 Getting Started**
 
 ```bash
-# Web Development
-npm run web        # Starts Vite dev server at http://localhost:3000
-
-# Mobile Development
-npm start          # Start Metro bundler
-npm run android    # Run on Android (in separate terminal)
-npm run ios        # Run on iOS (macOS only, in separate terminal)
+# Quick Setup
+git clone https://github.com/markhazleton/react-native-web-start.git
+cd react-native-web-start
+npm install --legacy-peer-deps
+npm run dev  # Web development
 ```
 
-## 📖 Documentation
+### **📱 Mobile Development**
 
-For complete setup instructions, including mobile development environment setup, see:
-
-- **[Complete Setup Guide](./documentation/COMPLETE_SETUP_GUIDE.md)** - Comprehensive step-by-step instructions
-- **[Original Setup Guide](./documentation/SETUP_GUIDE.md)** - Basic web-only setup
-- **[Project Summary](./documentation/PROJECT_SUMMARY.md)** - Complete project overview and achievements
-- **[Joke Functionality Analysis](./documentation/JOKE_FUNCTIONALITY_ANALYSIS.md)** - Technical deep dive into API integration
-
-## 🎯 Demo Features
-
-The starter includes three example screens:
-
-1. **Welcome Screen** - Platform information and feature overview
-2. **Jokes Screen** - API integration example with JokeAPI
-3. **About Screen** - App information and external links
-
-## 🏗️ Project Structure
-
-```
-├── src/
-│   ├── components/
-│   │   ├── navigation/     # Navigation components
-│   │   └── screens/        # Screen components
-│   ├── services/           # API services
-│   ├── types/              # TypeScript type definitions
-│   ├── App.tsx            # Main app component
-│   └── main.tsx           # Web entry point
-├── index.html             # Web HTML template
-├── index.js               # Mobile entry point
-├── vite.config.ts         # Vite configuration
-├── metro.config.js        # React Native configuration
-└── tsconfig.json          # TypeScript configuration
+```bash
+npm run mobile    # Start Metro bundler
+npm run android   # Android (separate terminal)  
+npm run ios       # iOS (separate terminal)
 ```
 
-## 🔧 Available Scripts
+### **� Build & Deploy**
 
-- `npm run web` - Start web development server
-- `npm run dev` - Alias for web development
-- `npm run build` - Build for production (web)
-- `npm run preview` - Preview production build
-- `npm start` - Start React Native Metro bundler
-- `npm run android` - Run on Android device/emulator
-- `npm run ios` - Run on iOS device/simulator
-- `npm run type-check` - Run TypeScript type checking
-- `npm test` - Run tests
-- `npm run lint` - Run ESLint
+```bash
+npm run clean     # Clean build artifacts
+npm run build     # Production build
+npm run deploy    # Deploy to GitHub Pages
+```
 
-## 🚀 Deployment
+### **📚 Key Documentation**
 
-### Web
+- **[Live Demo](https://markhazleton.github.io/react-native-web-start)** - See it in action
+- **[Complete Setup Guide](./documentation/COMPLETE_SETUP_GUIDE.md)** - Detailed instructions
+- **[Project Summary](./documentation/PROJECT_SUMMARY.md)** - Architecture overview  
+- **[API Integration Guide](./documentation/JOKE_FUNCTIONALITY_ANALYSIS.md)** - Technical deep dive
 
-- **Vercel**: `npx vercel --prod`
-- **Netlify**: Connect Git repository
-- **GitHub Pages**: `npm run build && npx gh-pages -d dist`
+### **� Support**
 
-### Mobile
+- � **Issues**: [GitHub Issues](https://github.com/markhazleton/react-native-web-start/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/markhazleton/react-native-web-start/discussions)
+- ⭐ **Star**: If this helps you, please star the repo!
 
-- **iOS**: Archive and distribute through Xcode
-- **Android**: Build signed APK/AAB and upload to Play Store
+---
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [React Native Web](https://necolas.github.io/react-native-web/) for enabling React Native on the web
-- [Vite](https://vitejs.dev/) for the amazing development experience
-- [JokeAPI](https://jokeapi.dev/) for providing the demo API
-- [React Native](https://reactnative.dev/) team for the mobile framework
-
-## 💡 Support
-
-If you find this project helpful, please give it a ⭐ on GitHub!
-
-For questions or issues, please [open an issue](https://github.com/markhazleton/react-native-web-start/issues).
+*This README reflects the current monorepo architecture with unified Home screen and comprehensive build system.*

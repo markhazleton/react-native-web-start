@@ -19,6 +19,7 @@ This document provides a detailed walkthrough of setting up GitHub Pages deploym
 ## Initial Setup Requirements
 
 ### Project Structure
+
 ```
 react-native-web-start/
 ├── .github/workflows/deploy.yml    # GitHub Actions workflow
@@ -32,6 +33,7 @@ react-native-web-start/
 ```
 
 ### Essential Dependencies
+
 - **Vite 7.0.6**: Build tool and dev server
 - **React Native Web 0.19.12**: Cross-platform components
 - **Node.js 20+**: Required for Vite 7.x compatibility
@@ -44,11 +46,13 @@ react-native-web-start/
 **Problem**: Repository was set to use GitHub Actions for Pages deployment, but the project was using the `gh-pages` npm package, creating a deployment conflict.
 
 **Symptoms**:
+
 - Changes weren't showing up on the live site
 - "Workflow details will appear here once your site has been deployed" message
 - No GitHub Actions runs visible
 
 **Root Cause**: GitHub Pages can be configured to deploy from either:
+
 - GitHub Actions (recommended)
 - A specific branch (like `gh-pages`)
 
@@ -61,6 +65,7 @@ Having both configurations creates conflicts.
 **Problem**: Documentation files showed fallback content instead of actual file contents when running on GitHub Pages.
 
 **Symptoms**:
+
 ```
 *This is fallback content. The actual documentation file could not be loaded.*
 ```
@@ -78,6 +83,7 @@ path: `${import.meta.env.BASE_URL}documentation/COMPLETE_SETUP_GUIDE.md`
 ```
 
 **Required Files**:
+
 - Add `src/vite-env.d.ts` for TypeScript support
 - Update `vite.config.ts` with correct base URL for production
 
@@ -86,6 +92,7 @@ path: `${import.meta.env.BASE_URL}documentation/COMPLETE_SETUP_GUIDE.md`
 **Problem**: GitHub Actions failed with `ERESOLVE` dependency conflicts.
 
 **Error Message**:
+
 ```
 npm error ERESOLVE could not resolve
 npm error While resolving: react-test-renderer@18.3.1
@@ -96,7 +103,9 @@ npm error Conflicting peer dependency: react@18.3.1
 **Root Cause**: React Native projects often have complex dependency trees with peer dependency conflicts between React versions.
 
 **Solutions Applied**:
+
 1. **Update package.json dependencies**:
+
    ```json
    "dependencies": {
      "react": "^18.2.0",  // Use caret for flexibility
@@ -105,11 +114,13 @@ npm error Conflicting peer dependency: react@18.3.1
    ```
 
 2. **Add .npmrc file**:
+
    ```
    legacy-peer-deps=true
    ```
 
 3. **Update GitHub Actions workflow**:
+
    ```yaml
    - name: Install dependencies
      run: npm install --legacy-peer-deps
@@ -120,6 +131,7 @@ npm error Conflicting peer dependency: react@18.3.1
 **Problem**: Build scripts failed in GitHub Actions (Linux) because they contained Windows PowerShell commands.
 
 **Error Message**:
+
 ```
 sh: 1: Syntax error: end of file unexpected (expecting "then")
 ```
@@ -127,11 +139,13 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 **Root Cause**: The `copy-docs` script tried to run Windows PowerShell commands (`Copy-Item`, `if not exist`) on a Linux runner.
 
 **Original Problematic Script**:
+
 ```json
 "copy-docs:win": "if not exist \"public\\documentation\" mkdir \"public\\documentation\" && Copy-Item -Path \"documentation\\*\" -Destination \"public\\documentation\\\" -Recurse -Force"
 ```
 
 **Solution**: Use platform-specific commands directly in the GitHub Actions workflow:
+
 ```yaml
 - name: Copy documentation
   run: mkdir -p public/documentation && cp -r documentation/* public/documentation/ && cp README.md public/documentation/
@@ -142,6 +156,7 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 **Problem**: Vite build failed with `crypto.hash is not a function` error.
 
 **Error Message**:
+
 ```
 [vite:build-html] crypto.hash is not a function
 ```
@@ -149,6 +164,7 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 **Root Cause**: Vite 7.x requires Node.js 20+ due to changes in the crypto API.
 
 **Solution**: Update GitHub Actions to use Node.js 20:
+
 ```yaml
 - name: Setup Node.js
   uses: actions/setup-node@v4
@@ -164,6 +180,7 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 **Solution**: Implement automated build information system:
 
 1. **Create build info generator script** (`scripts/generate-build-info.js`):
+
    ```javascript
    const buildInfo = {
      version: packageJson.version,
@@ -191,6 +208,7 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 ### GitHub Actions Approach (Recommended)
 
 **Pros**:
+
 - Full CI/CD pipeline control
 - Environment variables support
 - Better error reporting and logs
@@ -199,17 +217,20 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 - Real commit hash tracking
 
 **Cons**:
+
 - More complex initial setup
 - Requires workflow configuration
 
 ### gh-pages Package Approach
 
 **Pros**:
+
 - Simple one-command deployment
 - Good for manual deployments
 - Less configuration required
 
 **Cons**:
+
 - No CI/CD integration
 - No environment variable support
 - Manual deployment process
@@ -221,7 +242,8 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 
 **Problem**: Scripts written for one platform fail on another.
 
-**Best Practice**: 
+**Best Practice**:
+
 - Use platform-agnostic commands when possible
 - Separate CI/CD scripts from local development scripts
 - Test scripts on target deployment platform
@@ -231,6 +253,7 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 **Problem**: Different behavior between local development and production builds.
 
 **Solution**:
+
 - Use environment variables consistently
 - Set `NODE_ENV=production` in GitHub Actions
 - Configure Vite base URL for GitHub Pages
@@ -243,6 +266,7 @@ sh: 1: Syntax error: end of file unexpected (expecting "then")
 **Problem**: Static files not accessible due to incorrect paths.
 
 **Solutions**:
+
 1. **Copy files to public directory**: Ensure documentation files are available at build time
 2. **Use correct base URLs**: Account for GitHub Pages subdirectory structure
 3. **Configure Vite properly**: Set base URL in `vite.config.ts`
@@ -345,11 +369,13 @@ jobs:
 ### Configuration Files
 
 **`.npmrc`**:
+
 ```
 legacy-peer-deps=true
 ```
 
 **`vite.config.ts`**:
+
 ```typescript
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/react-native-web-start/' : '/',
@@ -360,28 +386,33 @@ export default defineConfig({
 ## Best Practices
 
 ### 1. Repository Configuration
+
 - Set GitHub Pages to use "GitHub Actions" as the source
 - Don't mix deployment methods (Actions + gh-pages package)
 - Use branch protection rules for the main branch
 
 ### 2. Dependency Management
+
 - Use exact versions for critical dependencies
 - Add `.npmrc` with `legacy-peer-deps=true` for React Native projects
 - Test dependency installation in clean environments
 
 ### 3. Build Process
+
 - Separate local development scripts from CI/CD scripts
 - Use environment variables for configuration
 - Generate build information automatically
 - Test builds locally before deploying
 
 ### 4. Documentation
+
 - Copy documentation files to `public/` directory for web access
 - Use relative URLs that work with GitHub Pages base paths
 - Implement fallback content for failed loads
 - Version your documentation with the application
 
 ### 5. Monitoring and Debugging
+
 - Implement version footers for easy identification
 - Use build timestamps to track deployments
 - Log build information for debugging
@@ -390,6 +421,7 @@ export default defineConfig({
 ## Troubleshooting Checklist
 
 ### Before Deployment
+
 - [ ] GitHub Pages is set to use "GitHub Actions"
 - [ ] All dependencies install without errors locally
 - [ ] Build process completes successfully locally
@@ -398,6 +430,7 @@ export default defineConfig({
 - [ ] Environment variables are set properly
 
 ### GitHub Actions Failures
+
 - [ ] Check Node.js version (use 20+ for Vite 7.x)
 - [ ] Verify npm install command includes `--legacy-peer-deps`
 - [ ] Ensure scripts use Unix commands for Linux runners
@@ -405,6 +438,7 @@ export default defineConfig({
 - [ ] Verify all required files are committed to repository
 
 ### Deployment Issues
+
 - [ ] Check GitHub Actions logs for specific errors
 - [ ] Verify GitHub Pages configuration in repository settings
 - [ ] Check that deployment completed successfully
@@ -412,6 +446,7 @@ export default defineConfig({
 - [ ] Clear browser cache if changes don't appear
 
 ### Runtime Issues
+
 - [ ] Check browser console for JavaScript errors
 - [ ] Verify documentation files are accessible at their URLs
 - [ ] Test application functionality on live site
@@ -421,22 +456,27 @@ export default defineConfig({
 ## Common Error Messages and Solutions
 
 ### "This is fallback content. The actual documentation file could not be loaded."
+
 - **Cause**: Documentation service can't fetch files due to incorrect paths
 - **Solution**: Use `import.meta.env.BASE_URL` for path resolution
 
 ### "crypto.hash is not a function"
+
 - **Cause**: Vite 7.x incompatibility with Node.js < 20
 - **Solution**: Upgrade to Node.js 20 in GitHub Actions
 
 ### "ERESOLVE could not resolve"
+
 - **Cause**: Peer dependency conflicts in React ecosystem
 - **Solution**: Use `--legacy-peer-deps` and update dependency versions
 
 ### "Syntax error: end of file unexpected"
+
 - **Cause**: Windows PowerShell commands running on Linux
 - **Solution**: Use Unix commands in GitHub Actions workflow
 
 ### "Workflow details will appear here once your site has been deployed"
+
 - **Cause**: GitHub Pages set to GitHub Actions but no workflow exists
 - **Solution**: Create proper GitHub Actions workflow file
 
@@ -451,6 +491,7 @@ Setting up GitHub Pages for a React Native Web project involves navigating sever
 5. **Deployment method selection** (GitHub Actions vs branch-based)
 
 The key to success is:
+
 - **Systematic troubleshooting**: Address one issue at a time
 - **Environment consistency**: Match CI/CD environment locally when possible
 - **Proper configuration**: Use environment variables and correct base URLs
