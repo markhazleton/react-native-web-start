@@ -69,6 +69,13 @@ const buildInfo = {
 
 // Write build info to shared directory (single source of truth)
 const buildInfoPath = path.join(__dirname, '..', 'packages', 'shared', 'src', 'buildInfo.json');
+const buildInfoDir = path.dirname(buildInfoPath);
+
+// Ensure the directory exists before writing
+if (!fs.existsSync(buildInfoDir)) {
+  fs.mkdirSync(buildInfoDir, { recursive: true });
+}
+
 fs.writeFileSync(buildInfoPath, JSON.stringify(buildInfo, null, 2));
 
 console.log('✅ Build info generated successfully');

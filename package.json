@@ -49,9 +49,13 @@
     "rebuild": "npm run clean && npm run build"
   },
   "dependencies": {
+    "marked": "^16.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-native": "^0.80.2",
+    "react-native-markdown-display": "^7.0.2",
+    "react-native-render-html": "^6.3.4",
+    "react-native-super-grid": "^6.0.1",
     "react-native-web": "^0.21.0"
   },
   "devDependencies": {
@@ -64,6 +68,7 @@
     "@react-native/metro-config": "^0.80.2",
     "@react-native/typescript-config": "^0.80.2",
     "@types/jest": "^30.0.0",
+    "@types/marked": "^6.0.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@types/react-native": "^0.73.0",
