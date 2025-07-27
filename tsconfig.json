@@ -18,9 +18,7 @@
     "typeRoots": ["./node_modules/@types", "./src/types"],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@monorepo/shared": ["packages/shared/src"],
-      "@monorepo/shared/*": ["packages/shared/src/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": ["src"],

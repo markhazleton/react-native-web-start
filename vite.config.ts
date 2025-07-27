@@ -12,10 +12,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "react-native": "react-native-web",
-      "@monorepo/shared": path.resolve(
-        __dirname,
-        "packages/shared/src/index.ts"
-      ),
     },
   },
   optimizeDeps: {
