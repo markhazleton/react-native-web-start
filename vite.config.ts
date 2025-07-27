@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "react-native": "react-native-web",
-      "@shared": path.resolve(__dirname, "packages/shared/src"),
+      "@monorepo/shared": path.resolve(__dirname, "packages/shared/src"),
     },
   },
   optimizeDeps: {

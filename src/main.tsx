@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import { AppRegistry } from 'react-native'
-import App from '@shared/App'
+import { App } from '@monorepo/shared'
 
 // Register the app for React Native Web
 AppRegistry.registerComponent('App', () => App)
