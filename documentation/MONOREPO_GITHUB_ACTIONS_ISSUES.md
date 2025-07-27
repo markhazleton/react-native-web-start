@@ -7,6 +7,7 @@ During the refactoring of the React Native Web project to a monorepo structure, 
 ## Project Structure Before and After
 
 ### Before Refactoring (Single Repository)
+
 ```
 react-native-web-start/
 ├── src/
@@ -19,6 +20,7 @@ react-native-web-start/
 ```
 
 ### After Refactoring (Monorepo)
+
 ```
 react-native-web-start/
 ├── src/
@@ -45,12 +47,15 @@ react-native-web-start/
 ### 1. Import Resolution Failures
 
 #### Problem
+
 The GitHub Actions build failed with the following error:
+
 ```
 [vite:load-fallback] Could not load /home/runner/work/react-native-web-start/react-native-web-start/packages/shared/src/App (imported by src/main.tsx): ENOENT: no such file or directory
 ```
 
 #### Root Cause
+
 The main.tsx file was importing from the shared package using various approaches that failed in the CI environment:
 
 1. **Initial attempt**: `import App from '@shared/App'`
@@ -58,12 +63,15 @@ The main.tsx file was importing from the shared package using various approaches
 3. **Third attempt**: `import App from '../packages/shared/src/App'`
 
 The import resolution was inconsistent between local development and CI environments due to:
+
 - Alias configuration issues in `vite.config.ts`
 - TypeScript path mapping problems in `tsconfig.json`
 - Differences in how Node.js resolves paths in different environments
 
 #### Solution
+
 1. **Updated Vite Configuration**:
+
    ```typescript
    resolve: {
      alias: {
@@ -75,6 +83,7 @@ The import resolution was inconsistent between local development and CI environm
    ```
 
 2. **Updated TypeScript Configuration**:
+
    ```json
    {
      "compilerOptions": {
@@ -87,6 +96,7 @@ The import resolution was inconsistent between local development and CI environm
    ```
 
 3. **Standardized Import**:
+
    ```typescript
    import App from '@shared/App'
    ```
@@ -94,7 +104,9 @@ The import resolution was inconsistent between local development and CI environm
 ### 2. Missing Files in CI Environment
 
 #### Problem
+
 The verification step revealed that critical files were missing in the GitHub Actions environment:
+
 ```
 📋 Step 1/5: Verify Project Structure
 🔍 Verifying project structure...
@@ -104,6 +116,7 @@ The verification step revealed that critical files were missing in the GitHub Ac
 ```
 
 #### Root Cause
+
 The `.gitignore` file contained an overly broad rule that was intended for NuGet packages but affected our monorepo structure:
 
 ```gitignore
@@ -114,13 +127,16 @@ The `.gitignore` file contained an overly broad rule that was intended for NuGet
 This rule excluded ALL directories named "packages" (case-insensitive), including our monorepo's `packages/` directory.
 
 #### Investigation Process
+
 1. **Local vs CI Discrepancy**: The build worked locally but failed in CI
 2. **Git Tracking Check**: `git ls-files packages/shared/src/` returned no results
 3. **Gitignore Analysis**: Found the conflicting rule at line 270
 4. **Verification**: The rule was excluding our entire shared package
 
 #### Solution
+
 1. **Fixed .gitignore**:
+
    ```gitignore
    # NuGet packages directories (case-sensitive to avoid our monorepo packages/)
    **/Packages/*
@@ -131,6 +147,7 @@ This rule excluded ALL directories named "packages" (case-insensitive), includin
    ```
 
 2. **Force-added excluded files**:
+
    ```bash
    git add -f packages/shared/src/
    git add -f packages/shared/package.json packages/shared/tsconfig.json
@@ -139,19 +156,25 @@ This rule excluded ALL directories named "packages" (case-insensitive), includin
 ### 3. Module Resolution and Export Issues
 
 #### Problem
+
 Even after fixing the file availability, there were export/import mismatches:
+
 ```
 Could not resolve "./components/screens/AboutScreen" from "packages/shared/src/index.ts"
 ```
 
 #### Root Cause
+
 The `packages/shared/src/index.ts` file was exporting components that didn't exist:
+
 ```typescript
 export { default as AboutScreen } from "./components/screens/AboutScreen"; // File didn't exist
 ```
 
 #### Solution
+
 Cleaned up the exports to match actual files:
+
 ```typescript
 // Removed non-existent exports
 export { default as WelcomeScreen } from "./components/screens/WelcomeScreen";
@@ -165,9 +188,11 @@ export { default as JokesScreen } from "./components/screens/JokesScreen";
 ### 4. Build Process Reliability Issues
 
 #### Problem
+
 The build process lacked early validation, making debugging difficult when files were missing or imports were broken.
 
 #### Solution
+
 Added a comprehensive verification step as the first build step:
 
 ```javascript
@@ -192,6 +217,7 @@ for (const file of requiredFiles) {
 ```
 
 Enhanced the Vite configuration with runtime validation:
+
 ```typescript
 // Verify that the shared package exists
 const sharedPath = path.resolve(__dirname, "packages/shared/src");
@@ -203,21 +229,25 @@ if (!fs.existsSync(sharedPath)) {
 ## Lessons Learned
 
 ### 1. Gitignore Conflicts
+
 - **Issue**: Generic .gitignore rules can conflict with monorepo structures
 - **Solution**: Be specific with ignore patterns and test thoroughly
 - **Prevention**: Regular audits of .gitignore rules when restructuring projects
 
 ### 2. Import Resolution Complexity
+
 - **Issue**: Multiple ways to import can lead to inconsistent behavior
 - **Solution**: Standardize on one approach and document it clearly
 - **Prevention**: Use tooling to enforce consistent import patterns
 
 ### 3. Environment Parity
+
 - **Issue**: Differences between local and CI environments can mask issues
 - **Solution**: Implement verification steps and test in CI-like environments
 - **Prevention**: Use containerized development environments
 
 ### 4. Build Process Visibility
+
 - **Issue**: Opaque build failures make debugging difficult
 - **Solution**: Add comprehensive logging and early validation
 - **Prevention**: Implement progressive validation at each build step
@@ -225,6 +255,7 @@ if (!fs.existsSync(sharedPath)) {
 ## Best Practices Established
 
 ### 1. File Structure Validation
+
 ```javascript
 // Always verify required files exist before building
 const verificationStep = {
@@ -235,6 +266,7 @@ const verificationStep = {
 ```
 
 ### 2. Path Resolution Strategy
+
 ```typescript
 // Use explicit aliases with absolute paths
 resolve: {
@@ -246,6 +278,7 @@ resolve: {
 ```
 
 ### 3. Error Handling
+
 ```typescript
 // Fail fast with clear error messages
 if (!fs.existsSync(sharedPath)) {
@@ -254,6 +287,7 @@ if (!fs.existsSync(sharedPath)) {
 ```
 
 ### 4. Git Tracking Verification
+
 ```bash
 # Always verify files are tracked before relying on them in CI
 git ls-files packages/shared/src/
@@ -272,12 +306,14 @@ git ls-files packages/shared/src/
 ## Impact Assessment
 
 ### Before Fix
+
 - ❌ GitHub Actions failing consistently
 - ❌ Deployment pipeline broken
 - ❌ No clear error messages
 - ❌ Manual debugging required
 
 ### After Fix
+
 - ✅ GitHub Actions building successfully
 - ✅ Automated deployment working
 - ✅ Clear error messages and early validation
@@ -286,22 +322,27 @@ git ls-files packages/shared/src/
 ## Preventive Measures
 
 ### 1. Pre-commit Hooks
+
 Consider adding pre-commit hooks to verify:
+
 - All imported files exist
 - No .gitignore conflicts
 - Build succeeds locally
 
 ### 2. CI/CD Enhancements
+
 - Add file existence checks as first CI step
 - Implement build artifact verification
 - Add notification for build failures with detailed logs
 
 ### 3. Documentation Standards
+
 - Document import patterns and conventions
 - Maintain architecture decision records (ADRs)
 - Keep build process documentation updated
 
 ### 4. Testing Strategy
+
 - Test builds in clean environments regularly
 - Implement integration tests for import resolution
 - Add automated checks for common issues
@@ -311,6 +352,7 @@ Consider adding pre-commit hooks to verify:
 The monorepo refactoring exposed several critical issues related to file tracking, import resolution, and build process reliability. The comprehensive solution involved fixing the root cause (.gitignore conflicts), standardizing the import strategy, and implementing robust verification processes.
 
 The key takeaway is that monorepo structures require careful attention to:
+
 1. **File tracking and .gitignore patterns**
 2. **Consistent import/export strategies**
 3. **Environment parity between local and CI**
