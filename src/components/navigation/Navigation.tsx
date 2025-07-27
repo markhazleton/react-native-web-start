@@ -5,7 +5,6 @@ import AboutScreen from '../screens/AboutScreen'
 import JokesScreen from '../screens/JokesScreen'
 import DocumentationScreen from '../screens/DocumentationScreen'
 import TabBar from './TabBar'
-import Footer from '../common/Footer'
 
 const Navigation: React.FC = () => {
   const [activeTab, setActiveTab] = useState('home')
@@ -31,7 +30,6 @@ const Navigation: React.FC = () => {
         {renderScreen()}
       </View>
       <TabBar activeTab={activeTab} onTabPress={setActiveTab} />
-      <Footer />
     </View>
   )
 }

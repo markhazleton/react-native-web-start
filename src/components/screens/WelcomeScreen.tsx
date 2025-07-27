@@ -1,7 +1,26 @@
 import React from 'react'
 import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native'
+import { BuildInfoService } from '../../services/buildInfoService'
 
 const WelcomeScreen: React.FC = () => {
+  const buildInfo = BuildInfoService.getBuildInfo()
+  
+  // Get runtime information
+  const getRuntimeInfo = () => {
+    if (Platform.OS === 'web') {
+      return {
+        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'Unknown',
+        viewport: typeof window !== 'undefined' ? `${window.innerWidth}x${window.innerHeight}` : 'Unknown',
+        language: typeof navigator !== 'undefined' ? navigator.language : 'Unknown',
+        cookieEnabled: typeof navigator !== 'undefined' ? navigator.cookieEnabled : false,
+        onLine: typeof navigator !== 'undefined' ? navigator.onLine : false,
+      }
+    }
+    return null
+  }
+
+  const runtimeInfo = getRuntimeInfo()
+  
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <View style={styles.header}>
@@ -20,13 +39,47 @@ const WelcomeScreen: React.FC = () => {
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>💡 Platform Info</Text>
-        <Text style={styles.cardText}>Current Platform: {Platform.OS}</Text>
-        <Text style={styles.cardText}>Version: {Platform.Version?.toString() || 'Unknown'}</Text>
+        <Text style={styles.cardText}>Runtime Platform: {Platform.OS} {Platform.Version?.toString() ? `(v${Platform.Version})` : ''}</Text>
+        <Text style={styles.cardText}>Build Platform: {BuildInfoService.getPlatformString()}</Text>
+        <Text style={styles.cardText}>Node Version: {BuildInfoService.getNodeVersionString()}</Text>
+        <Text style={styles.cardText}>Environment: {BuildInfoService.getEnvironmentString()}</Text>
+        {runtimeInfo && (
+          <>
+            <Text style={styles.cardText}>Viewport: {runtimeInfo.viewport}</Text>
+            <Text style={styles.cardText}>Language: {runtimeInfo.language}</Text>
+            <Text style={styles.cardText}>Online: {runtimeInfo.onLine ? 'Yes' : 'No'}</Text>
+          </>
+        )}
       </View>
+
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>🔧 Build Information</Text>
+        <Text style={styles.cardText}>App Version: {BuildInfoService.getVersionString()}</Text>
+        <Text style={styles.cardText}>Build Date: {BuildInfoService.getBuildDateString()}</Text>
+        <Text style={styles.cardText}>Build Time: {BuildInfoService.getBuildTimeShort()}</Text>
+        <Text style={styles.cardText}>Git Commit: {BuildInfoService.getCommitString()}</Text>
+        <Text style={styles.cardText}>Git Branch: {BuildInfoService.getGitBranchString()}</Text>
+        <Text style={styles.cardText}>Build Number: {BuildInfoService.getBuildNumberString()}</Text>
+        {buildInfo.gitTag && buildInfo.gitTag !== '""' && (
+          <Text style={styles.cardText}>Git Tag: {buildInfo.gitTag}</Text>
+        )}
+      </View>
+
+      {runtimeInfo && (
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>🌐 Browser Information</Text>
+          <Text style={[styles.cardText, styles.monospace]} numberOfLines={2}>
+            {runtimeInfo.userAgent}
+          </Text>
+        </View>
+      )}
 
       <View style={styles.footer}>
         <Text style={styles.footerText}>
           Built with ❤️ using React Native Web + Vite
+        </Text>
+        <Text style={styles.versionText}>
+          {BuildInfoService.getComprehensiveBuildString()}
         </Text>
       </View>
     </ScrollView>
@@ -89,6 +142,10 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 4,
   },
+  monospace: {
+    fontFamily: Platform.OS === 'web' ? 'monospace' : 'Courier New',
+    fontSize: 12,
+  },
   footer: {
     alignItems: 'center',
     marginTop: 20,
@@ -97,6 +154,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#999',
     textAlign: 'center',
+    marginBottom: 4,
+  },
+  versionText: {
+    fontSize: 12,
+    color: '#ccc',
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'web' ? 'monospace' : 'Courier New',
   },
 })
 
