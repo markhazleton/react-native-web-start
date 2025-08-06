@@ -43,6 +43,8 @@
 - 🔒 **Type Safety**: Full TypeScript support with strict configuration
 - 📱 **Responsive Design**: Adaptive UI for all screen sizes and platforms
 - 🔄 **API Integration**: Production-ready HTTP client with error handling
+- 🎨 **Modern UI**: Tailwind CSS with Sass preprocessing for enhanced styling
+- 📚 **In-App Documentation**: Built-in markdown documentation browser
 
 ### 🛠️ **Developer Experience**
 
@@ -51,6 +53,8 @@
 - 🧪 **Testing Ready**: Jest configuration for unit and integration tests
 - 🔍 **Code Quality**: ESLint, Prettier, and TypeScript strict mode
 - 📚 **Rich Documentation**: In-app documentation browser with markdown support
+- 🎯 **Monorepo Structure**: Organized packages for shared, web, and mobile code
+- 🔧 **Build Automation**: Comprehensive build scripts with asset management
 
 ### 🚀 **Production Features**
 
@@ -58,6 +62,8 @@
 - 📊 **Performance Monitoring**: Bundle analysis and optimization tips
 - 🔐 **Security**: Dependabot integration and vulnerability management
 - 🎯 **SEO Optimized**: Meta tags and social sharing support
+- 📱 **PWA Ready**: Progressive Web App capabilities
+- 🔄 **Hot Module Replacement**: Instant development feedback
 
 ---
 
@@ -67,21 +73,26 @@
 
 | Component | Technology | Version | Purpose |
 |-----------|------------|---------|---------|
-| **Frontend Framework** | React Native | 0.74.0 | Cross-platform mobile development |
-| **Web Compatibility** | React Native Web | 0.19.12 | Web platform support |
+| **Frontend Framework** | React Native | 0.80.2 | Cross-platform mobile development |
+| **Web Compatibility** | React Native Web | 0.21.0 | Web platform support |
 | **Build Tool** | Vite | 7.0.6 | Fast development and production builds |
-| **Language** | TypeScript | 5.2.2 | Type safety and developer experience |
-| **Bundler (Mobile)** | Metro | 0.77.0 | React Native bundling and transformation |
+| **Language** | TypeScript | 5.9.2 | Type safety and developer experience |
+| **Bundler (Mobile)** | Metro | 0.80.2 | React Native bundling and transformation |
+| **Styling** | Tailwind CSS | 4.1.11 | Utility-first CSS framework |
+| **CSS Preprocessor** | Sass | 1.90.0 | Enhanced CSS with variables and mixins |
+| **UI Framework** | React | 19.1.1 | Modern React with latest features |
 | **HTTP Client** | Fetch API | Native | API communication and data fetching |
+| **Markdown Processing** | Marked | 16.1.2 | Markdown parsing and rendering |
 
 ### **Project Structure**
 
-```
+```bash
 react-native-web-start/
 ├── 📁 packages/                     # Monorepo packages
 │   ├── 📁 shared/                   # Shared components and logic
 │   │   └── 📁 src/                  # Single source of truth
 │   │       ├── 📁 components/       # Reusable UI components
+│   │       │   ├── 📁 common/       # Shared UI components
 │   │       │   ├── 📁 navigation/   # Navigation components
 │   │       │   └── 📁 screens/      # Screen components
 │   │       ├── 📁 services/         # API and business logic
@@ -97,14 +108,21 @@ react-native-web-start/
 │   ├── 📄 build.js                  # Comprehensive build pipeline
 │   ├── 📄 clean.js                  # Clean build artifacts
 │   ├── 📄 copy-assets.js           # Asset management
+│   ├── 📄 copy-docs.js             # Documentation sync
 │   └── 📄 generate-build-info.js   # Dynamic build metadata
 ├── 📁 documentation/                # Comprehensive documentation
 ├── 📁 public/                       # Generated public assets
-├── 📁 .github/                      # GitHub templates and workflows
-├── 📄 src/main.tsx                 # Web entry point (imports from shared)
-├── 📄 index.html                   # Web HTML template
+├── 📁 src/                          # Web entry point and styles
+│   ├── 📄 main.tsx                 # Web entry point (imports from shared)
+│   └── 📁 styles/                  # SCSS and Tailwind styles
+│       ├── 📄 main.scss            # Main stylesheet with Tailwind
+│       └── 📄 variables.scss       # SCSS variables
+├── � .github/                      # GitHub templates and workflows
+├── �📄 index.html                   # Web HTML template
 ├── 📄 index.js                     # Mobile entry point
 ├── 📄 vite.config.ts               # Vite configuration
+├── 📄 tailwind.config.js           # Tailwind CSS configuration
+├── 📄 postcss.config.js            # PostCSS configuration
 ├── 📄 metro.config.cjs             # React Native configuration
 └── 📄 package.json                 # Dependencies and scripts
 ```
@@ -176,8 +194,29 @@ npm run ios        # iOS (macOS only)
 Access comprehensive documentation directly in the application:
 
 - Navigate to **Documentation** tab in the live app
-- Browse markdown files with syntax highlighting
+- Browse markdown files with syntax highlighting and enhanced rendering
 - Search functionality for quick reference
+- Responsive documentation browser with file metadata
+- Enhanced markdown reader with platform-specific optimizations
+
+### **📱 Application Screens**
+
+| Screen | Purpose | Features |
+|--------|---------|----------|
+| **WelcomeScreen** | App introduction and platform info | Build information, platform detection, resource links |
+| **JokesScreen** | API integration demo | JokeAPI integration, error handling, loading states |
+| **DocumentationScreen** | In-app documentation browser | File browser, markdown reader, search functionality |
+| **DocumentationBrowserScreen** | Browse documentation files | File listing, search, metadata display |
+| **DocumentationReaderScreen** | Read markdown files | Syntax highlighting, responsive design |
+
+### **🧩 Component Architecture**
+
+| Component Type | Count | Examples |
+|----------------|-------|----------|
+| **Screens** | 6 | WelcomeScreen, JokesScreen, DocumentationScreen |
+| **Navigation** | 2 | Navigation, TabBar |
+| **Common** | 3 | Footer, MarkdownRenderer |
+| **Services** | 3 | DocumentationService, BuildInfoService, JokeAPI |
 
 ---
 
@@ -188,17 +227,45 @@ Access comprehensive documentation directly in the application:
 | Command | Description | Platform |
 |---------|-------------|----------|
 | `npm run dev` | Start development server | Web |
+| `npm run web` | Start web development server | Web |
 | `npm run build` | Production build with full pipeline | Web |
 | `npm run clean` | Clean all build artifacts | All |
 | `npm run preview` | Preview production build | Web |
 | `npm start` | Start Metro bundler | Mobile |
-| `npm run mobile` | Start mobile development | Mobile |
+| `npm run start:mobile` | Start mobile development | Mobile |
 | `npm run android` | Run on Android | Mobile |
 | `npm run ios` | Run on iOS | Mobile |
 | `npm test` | Run test suite | All |
 | `npm run lint` | Code quality check | All |
 | `npm run type-check` | TypeScript validation | All |
 | `npm run deploy` | Deploy to GitHub Pages | Web |
+| `npm run copy-docs` | Copy documentation files | All |
+| `npm run copy-assets` | Copy assets to public | All |
+| `npm run css:build` | Build Tailwind CSS (watch mode) | Web |
+| `npm run css:build-prod` | Build Tailwind CSS (production) | Web |
+| `npm run sass:build` | Build SCSS (watch mode) | Web |
+| `npm run sass:build-prod` | Build SCSS (production) | Web |
+
+### **🎨 Styling System**
+
+| Technology | Purpose | Features |
+|------------|---------|----------|
+| **Tailwind CSS 4.1.11** | Utility-first CSS framework | Modern utility classes, responsive design |
+| **Sass 1.90.0** | CSS preprocessor | Variables, mixins, enhanced CSS features |
+| **PostCSS** | CSS transformation | Autoprefixer, Tailwind processing |
+| **Platform.select()** | Cross-platform styling | Platform-specific style overrides |
+| **CSS Custom Properties** | Design tokens | Modern CSS variables for consistent theming |
+
+### **⚙️ Build System**
+
+| Script | Purpose | Output |
+|--------|---------|--------|
+| **build.js** | Comprehensive build pipeline | Production-ready web application |
+| **copy-assets.js** | Asset management | Copies assets to public directory |
+| **copy-docs.js** | Documentation sync | Syncs docs to public for deployment |
+| **generate-build-info.js** | Build metadata | Creates build information JSON |
+| **clean.js** | Build cleanup | Removes build artifacts |
+| **verify-structure.js** | Project validation | Ensures project structure integrity |
 
 ### **🧪 Testing**
 
@@ -324,6 +391,8 @@ npm run deploy            # Deploys to GitHub Pages
 - 🎯 **MVPs** requiring rapid cross-platform deployment
 - 👥 **Small to medium teams** wanting to maximize development efficiency
 - 🚀 **Startups** needing to reach multiple platforms quickly
+- 📚 **Documentation-heavy applications** with rich content needs
+- 🎨 **Modern UI applications** requiring consistent design systems
 
 #### **⚠️ Consider Alternatives When**
 
@@ -332,7 +401,7 @@ npm run deploy            # Deploys to GitHub Pages
 - 👥 **Large teams** with dedicated platform specialists
 - 🎨 **Heavy custom animations** or platform-specific UI requirements
 
-### **📏 Development Guidelines**
+#### **📏 Development Guidelines**
 
 #### **🏗️ Architecture Principles**
 
@@ -340,6 +409,8 @@ npm run deploy            # Deploys to GitHub Pages
 - **Service layer separation** for API and business logic
 - **Type-first development** with TypeScript
 - **Platform-agnostic core** with platform-specific adaptations
+- **Monorepo structure** for shared code organization
+- **Modern styling** with Tailwind CSS and Sass
 
 #### **📱 Cross-Platform Strategy**
 
@@ -347,6 +418,8 @@ npm run deploy            # Deploys to GitHub Pages
 - **Progressive enhancement** for web features
 - **Shared styling** with platform-specific overrides
 - **Consistent navigation** patterns across platforms
+- **Responsive design** with adaptive layouts
+- **Modern UI patterns** with gradients and animations
 
 ---
 
@@ -393,10 +466,17 @@ We welcome contributions! Please see our contributing guidelines:
 - ✅ TypeScript integration with strict configuration
 - ✅ Vite 7.0 with optimized build pipeline
 - ✅ GitHub Pages deployment automation
-- ✅ In-app documentation browser
+- ✅ In-app documentation browser with markdown support
 - ✅ API integration example (JokeAPI)
-- ✅ Responsive navigation system
+- ✅ Responsive navigation system with modern UI
 - ✅ Comprehensive documentation
+- ✅ Tailwind CSS integration with Sass preprocessing
+- ✅ Modern component architecture with monorepo structure
+- ✅ Automated build scripts with asset management
+- ✅ Cross-platform styling with Platform.select()
+- ✅ Enhanced UI with gradients, shadows, and animations
+- ✅ Markdown documentation reader with syntax highlighting
+- ✅ Build information service with environment detection
 
 #### **🚧 Roadmap**
 
@@ -404,15 +484,23 @@ We welcome contributions! Please see our contributing guidelines:
 - 🔲 **v1.2**: CI/CD pipeline with GitHub Actions
 - 🔲 **v1.3**: Expo integration for easier mobile development
 - 🔲 **v1.4**: PWA features and service worker
+- 🔲 **v1.5**: State management (Redux Toolkit/Zustand)
+- 🔲 **v1.6**: Advanced animations and micro-interactions
+- 🔲 **v1.7**: Dark/light theme support
+- 🔲 **v1.8**: Offline support and caching
 - 🔲 **v2.0**: Micro-frontend architecture support
 
 ### **📈 Statistics**
 
-- **Bundle Size**: 321KB (100KB gzipped)
+- **Bundle Size**: ~321KB (100KB gzipped)
 - **Build Time**: <1 second (development), ~870ms (production)
 - **Platforms**: 3 (Web, iOS, Android)
-- **Dependencies**: 62 (15 runtime, 47 development)
+- **Dependencies**: 8 runtime, 27 development
+- **Components**: 6 screens, 3 common components, 1 navigation system
+- **Services**: 3 (Documentation, Build Info, Joke API)
 - **Code Coverage**: Target 80%+ (setup in progress)
+- **TypeScript**: 100% type coverage
+- **Modern Features**: Tailwind CSS, SCSS, ESM modules, Vite HMR
 
 ---
 
@@ -424,12 +512,15 @@ We welcome contributions! Please see our contributing guidelines:
 - **[React Native Web](https://necolas.github.io/react-native-web/)** - For enabling web compatibility
 - **[Vite Team](https://vitejs.dev/)** - For the incredible development experience
 - **[TypeScript Team](https://www.typescriptlang.org/)** - For type safety and developer productivity
+- **[Tailwind CSS](https://tailwindcss.com/)** - For utility-first CSS framework
+- **[Sass Team](https://sass-lang.com/)** - For enhanced CSS preprocessing
 
 ### **🎯 Community & Inspiration**
 
 - **[JokeAPI](https://jokeapi.dev/)** - For providing the demo API
 - **[GitHub](https://github.com)** - For hosting and collaboration tools
 - **React Native Web Community** - For contributions and feedback
+- **[Marked](https://marked.js.org/)** - For markdown processing capabilities
 
 ### **💡 Special Thanks**
 
@@ -457,13 +548,9 @@ We welcome contributions! Please see our contributing guidelines:
 
 ---
 
-<div align="center">
-
 **🚀 Ready to build something amazing?**
 
 [**Get Started Now**](https://github.com/markhazleton/react-native-web-start/generate) | [**View Live Demo**](https://markhazleton.github.io/react-native-web-start) | [**Read the Docs**](./documentation/)
-
----
 
 ---
 
@@ -484,8 +571,6 @@ cd react-native-web-start
 npm install --legacy-peer-deps
 npm run dev  # Web development
 ```
-
-### **📱 Mobile Development**
 
 ```bash
 npm run mobile    # Start Metro bundler
