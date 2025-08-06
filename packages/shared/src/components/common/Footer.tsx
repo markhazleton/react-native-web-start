@@ -25,14 +25,22 @@ const Footer: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#ffffff',
     borderTopWidth: 1,
-    borderTopColor: '#e9ecef',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    borderTopColor: '#f1f5f9',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
     ...Platform.select({
       web: {
-        boxShadow: '0 -1px 3px rgba(0,0,0,0.1)',
+        boxShadow: '0 -4px 16px rgba(0,0,0,0.04), 0 -2px 8px rgba(0,0,0,0.02)',
+        backdropFilter: 'blur(8px)',
+      },
+      default: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: -2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 8,
+        elevation: 4,
       },
     }),
   },
@@ -54,36 +62,38 @@ const styles = StyleSheet.create({
     flex: 1,
     ...Platform.select({
       default: {
-        // On mobile, stack vertically
         alignItems: 'flex-start',
         marginTop: 4,
       },
       web: {
-        // On web, keep right aligned
         alignItems: 'flex-end',
       },
     }),
   },
   appText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#495057',
-    marginBottom: 2,
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#1e293b',
+    marginBottom: 3,
+    letterSpacing: 0.2,
   },
   versionText: {
-    fontSize: 10,
-    color: '#6c757d',
-    fontFamily: Platform.OS === 'web' ? 'monospace' : 'Courier',
+    fontSize: 11,
+    color: '#64748b',
+    fontFamily: Platform.OS === 'web' ? 'ui-monospace, monospace' : 'Courier',
+    fontWeight: '500',
   },
   buildText: {
-    fontSize: 10,
-    color: '#6c757d',
-    marginBottom: 2,
+    fontSize: 11,
+    color: '#64748b',
+    marginBottom: 3,
+    fontWeight: '500',
   },
   envText: {
-    fontSize: 10,
-    color: '#6c757d',
-    fontFamily: Platform.OS === 'web' ? 'monospace' : 'Courier',
+    fontSize: 11,
+    color: '#64748b',
+    fontFamily: Platform.OS === 'web' ? 'ui-monospace, monospace' : 'Courier',
+    fontWeight: '500',
   },
 })
 

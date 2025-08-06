@@ -16,6 +16,14 @@ export default defineConfig({
   define: {
     global: "globalThis",
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ["legacy-js-api"],
+      },
+    },
+    postcss: "./postcss.config.js",
+  },
   resolve: {
     alias: {
       "react-native": "react-native-web",

@@ -1,0 +1,34 @@
+// SCSS Variables
+$primary-color: #3b82f6;
+$secondary-color: #64748b;
+$success-color: #10b981;
+$warning-color: #f59e0b;
+$error-color: #ef4444;
+
+$background-color: #ffffff;
+$background-secondary: #f8fafc;
+$text-color: #1f2937;
+$text-secondary: #6b7280;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// Border radius
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 1rem;
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+// Z-index
+$z-dropdown: 1000;
+$z-modal: 1050;
+$z-tooltip: 1100;

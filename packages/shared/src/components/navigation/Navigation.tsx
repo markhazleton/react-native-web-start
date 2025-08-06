@@ -23,10 +23,10 @@ const Navigation: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <TabBar activeTab={activeTab} onTabPress={setActiveTab} />
       <View style={styles.content}>
         {renderScreen()}
       </View>
-      <TabBar activeTab={activeTab} onTabPress={setActiveTab} />
     </View>
   )
 }
