@@ -5,6 +5,13 @@
   "type": "module",
   "description": "A React Native Web starter application using Vite for web and React Native CLI for mobile",
   "homepage": "https://markhazleton.github.io/react-native-web-start",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markhazleton/react-native-web-start.git"
+  },
+  "bugs": {
+    "url": "https://github.com/markhazleton/react-native-web-start/issues"
+  },
   "keywords": [
     "react-native",
     "react-native-web",
@@ -12,12 +19,16 @@
     "typescript",
     "cross-platform",
     "ios",
-    "android"
+    "android",
+    "starter"
   ],
   "author": "Mark Hazleton",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
-    "clean": "node scripts/clean.js",
     "copy-assets": "node scripts/copy-assets.js",
     "predev": "npm run copy-assets && node scripts/generate-build-info.js",
     "dev": "vite",
@@ -28,6 +39,7 @@
     "css:build-prod": "tailwindcss -i ./src/styles/main.scss -o ./dist/assets/main.css --minify",
     "sass:build": "sass src/styles:dist/assets/styles --watch",
     "sass:build-prod": "sass src/styles:dist/assets/styles --style=compressed --no-source-map",
+    "clean": "node scripts/clean.js",
     "prebuild": "npm run clean",
     "build": "node scripts/build.js",
     "postbuild": "echo Build completed! Output in ./dist/",
@@ -41,6 +53,7 @@
     "start:web": "npm run dev",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write .",
     "copy-docs": "node scripts/copy-docs.js",
     "copy-docs:win": "if not exist \"public\\documentation\" mkdir \"public\\documentation\" && Copy-Item -Path \"documentation\\*\" -Destination \"public\\documentation\\\" -Recurse -Force && Copy-Item -Path \"README.md\" -Destination \"public\\documentation\\\" -Force",
     "copy-docs:unix": "mkdir -p public/documentation && cp -r documentation/* public/documentation/ && cp README.md public/documentation/",
@@ -53,48 +66,45 @@
     "rebuild": "npm run clean && npm run build"
   },
   "dependencies": {
-    "marked": "^16.1.2",
+    "marked": "^16.2.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-native": "^0.80.2",
+    "react-native": "^0.81.1",
     "react-native-markdown-display": "^7.0.2",
     "react-native-render-html": "^6.3.4",
-    "react-native-super-grid": "^6.0.1",
-    "react-native-web": "^0.21.0"
+    "react-native-super-grid": "^6.0.2",
+    "react-native-web": "^0.21.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.0",
-    "@babel/preset-env": "^7.28.0",
-    "@babel/runtime": "^7.28.2",
-    "@react-native-community/cli": "^19.1.1",
-    "@react-native/babel-preset": "^0.80.2",
-    "@react-native/eslint-config": "^0.80.2",
-    "@react-native/metro-config": "^0.80.2",
-    "@react-native/typescript-config": "^0.80.2",
-    "@tailwindcss/postcss": "^4.1.11",
+    "@babel/core": "^7.28.4",
+    "@babel/preset-env": "^7.28.3",
+    "@babel/runtime": "^7.28.4",
+    "@react-native-community/cli": "^20.0.1",
+    "@react-native/babel-preset": "^0.81.1",
+    "@react-native/eslint-config": "^0.81.1",
+    "@react-native/metro-config": "^0.81.1",
+    "@react-native/typescript-config": "^0.81.1",
+    "@tailwindcss/postcss": "^4.1.13",
     "@types/jest": "^30.0.0",
     "@types/marked": "^6.0.0",
-    "@types/react": "^19.1.9",
-    "@types/react-dom": "^19.1.7",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "@types/react-native": "^0.73.0",
     "@types/react-test-renderer": "^19.1.0",
-    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.21",
-    "babel-jest": "^30.0.5",
-    "eslint": "^9.32.0",
+    "babel-jest": "^30.1.2",
+    "eslint": "^9.35.0",
     "gh-pages": "^6.3.0",
-    "jest": "^30.0.5",
+    "jest": "^30.1.3",
     "metro-react-native-babel-preset": "^0.77.0",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "react-test-renderer": "^19.1.1",
-    "sass": "^1.90.0",
-    "tailwindcss": "^4.1.11",
+    "sass": "^1.92.1",
+    "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
-    "vite": "^7.0.6"
-  },
-  "engines": {
-    "node": ">=18.0.0"
+    "vite": "^7.1.4"
   },
   "jest": {
     "preset": "react-native",
