@@ -1,5 +1,3 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
 import { AppRegistry } from 'react-native'
 import App from '@shared/App'
 import './styles/main.scss'
@@ -13,10 +11,8 @@ if (!container) {
   throw new Error('Root element not found')
 }
 
-// Create root and render the app
-const root = createRoot(container)
-
-// Start the app
+// Use AppRegistry.runApplication for React Native Web compatibility
+// This handles the React root creation internally
 AppRegistry.runApplication('App', {
   rootTag: container,
 })

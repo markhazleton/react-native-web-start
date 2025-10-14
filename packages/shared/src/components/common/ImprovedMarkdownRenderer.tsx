@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Platform, Linking, Alert, TouchableOpacity, Text } from 'react-native'
+import { View, StyleSheet, Platform, Linking, Alert, TouchableOpacity, Text, ViewStyle } from 'react-native'
 import Markdown from 'react-native-markdown-display'
 
 interface ImprovedMarkdownRendererProps {
   content: string
-  style?: any
+  style?: ViewStyle
 }
 
 const ImprovedMarkdownRenderer: React.FC<ImprovedMarkdownRendererProps> = ({ content, style }) => {
   const [hasError, setHasError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState<string>('')
 
   // Reset error state when content changes
   useEffect(() => {
     setHasError(false)
-    setErrorMessage('')
   }, [content])
 
   const handleLinkPress = (url: string): boolean => {
@@ -40,11 +38,101 @@ const ImprovedMarkdownRenderer: React.FC<ImprovedMarkdownRendererProps> = ({ con
     return false // Prevent default behavior
   }
 
+  // Fallback styles for simple renderer
+  const fallbackStyles = StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 16,
+    },
+    h1: {
+      fontSize: 28,
+      fontWeight: 'bold',
+      color: '#1a1a1a',
+      marginTop: 24,
+      marginBottom: 16,
+      lineHeight: 36,
+    },
+    h2: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: '#1a1a1a',
+      marginTop: 20,
+      marginBottom: 12,
+      lineHeight: 32,
+    },
+    h3: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: '#1a1a1a',
+      marginTop: 16,
+      marginBottom: 10,
+      lineHeight: 28,
+    },
+    codeBlock: {
+      backgroundColor: '#f6f8fa',
+      borderRadius: 6,
+      padding: 16,
+      marginVertical: 12,
+      borderWidth: 1,
+      borderColor: '#e1e4e8',
+    },
+    codeText: {
+      fontFamily: Platform.select({
+        ios: 'Menlo-Regular',
+        android: 'monospace',
+        web: 'SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace',
+      }),
+      fontSize: 14,
+      color: '#d73a49',
+    },
+    listItem: {
+      flexDirection: 'row',
+      marginBottom: 8,
+      paddingLeft: 4,
+    },
+    bullet: {
+      fontSize: 16,
+      color: '#0366d6',
+      marginRight: 8,
+      marginTop: 4,
+    },
+    listText: {
+      flex: 1,
+      fontSize: 16,
+      color: '#333',
+      lineHeight: 24,
+    },
+    blockquote: {
+      backgroundColor: '#f6f8fa',
+      borderLeftWidth: 4,
+      borderLeftColor: '#dfe2e5',
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+      marginVertical: 16,
+      borderRadius: 3,
+    },
+    blockquoteText: {
+      fontSize: 16,
+      color: '#333',
+      lineHeight: 24,
+      fontStyle: 'italic',
+    },
+    spacing: {
+      height: 16,
+    },
+    paragraph: {
+      fontSize: 16,
+      color: '#333',
+      lineHeight: 24,
+      marginBottom: 16,
+    },
+  })
+
   // Fallback simple markdown renderer
   const SimpleFallbackRenderer: React.FC<{ content: string }> = ({ content }) => {
     const processMarkdownContent = (markdown: string) => {
       const lines = markdown.split('\n')
-      const elements: JSX.Element[] = []
+      const elements: React.JSX.Element[] = []
 
       lines.forEach((line, index) => {
         const key = `fallback-${index}`
@@ -126,19 +214,7 @@ const ImprovedMarkdownRenderer: React.FC<ImprovedMarkdownRendererProps> = ({ con
     )
   }
 
-  if (hasError) {
-    return (
-      <View style={[styles.container, style]}>
-        <View style={styles.errorHeader}>
-          <Text style={styles.errorTitle}>Using Fallback Renderer</Text>
-          <Text style={styles.errorSubtitle}>Complex markdown detected</Text>
-        </View>
-        <SimpleFallbackRenderer content={content} />
-      </View>
-    )
-  }
-
-  // Enhanced markdown styles with safer configuration
+  // Enhanced markdown styles
   const markdownStyles = StyleSheet.create({
     body: {
       color: '#333',
@@ -296,16 +372,72 @@ const ImprovedMarkdownRenderer: React.FC<ImprovedMarkdownRendererProps> = ({ con
     },
   })
 
+  // Custom rules for enhanced rendering
+  const rules = {
+    // Handle links with proper navigation
+    link: (node: any, children: any, _parent: any, _styles: any) => (
+      <TouchableOpacity
+        key={node.key}
+        onPress={() => handleLinkPress(node.attributes.href)}
+        activeOpacity={0.7}
+      >
+        <Text style={markdownStyles.link}>{children}</Text>
+      </TouchableOpacity>
+    ),
+
+    // Enhanced image handling (placeholder for now since images need special handling in RN)
+    image: (node: any, _children: any, _parent: any, _styles: any) => (
+      <View key={node.key} style={imageStyles.container}>
+        <View style={imageStyles.placeholder}>
+          <Text style={imageStyles.placeholderText}>
+            🖼️ {node.attributes.alt || 'Image'}
+          </Text>
+        </View>
+      </View>
+    ),
+  }
+
+  const imageStyles = StyleSheet.create({
+    container: {
+      marginVertical: 12,
+      alignItems: 'center',
+    },
+    placeholder: {
+      backgroundColor: '#f6f8fa',
+      padding: 16,
+      borderRadius: 6,
+      borderWidth: 1,
+      borderColor: '#e1e4e8',
+      borderStyle: 'dashed',
+    },
+    placeholderText: {
+      fontSize: 14,
+      color: '#6a737d',
+    },
+  })
+
+  if (hasError) {
+    return (
+      <View style={[styles.container, style]}>
+        <View style={styles.errorHeader}>
+          <Text style={styles.errorTitle}>Using Fallback Renderer</Text>
+          <Text style={styles.errorSubtitle}>Complex markdown detected</Text>
+        </View>
+        <SimpleFallbackRenderer content={content} />
+      </View>
+    )
+  }
+
   try {
     return (
       <View style={[styles.container, style]}>
         <Markdown
           style={markdownStyles}
+          rules={rules}
           onLinkPress={handleLinkPress}
-          onError={(error) => {
+          onError={(error: Error) => {
             console.warn('Markdown rendering error:', error)
             setHasError(true)
-            setErrorMessage(error?.message || 'Unknown error')
           }}
         >
           {content}
@@ -327,277 +459,28 @@ const ImprovedMarkdownRenderer: React.FC<ImprovedMarkdownRendererProps> = ({ con
   }
 }
 
-  const markdownStyles = StyleSheet.create({
-    // Body styles
-    body: {
-      color: '#333',
-      fontSize: 16,
-      lineHeight: 24,
-      padding: 16,
-    },
-    
-    // Heading styles
-    heading1: {
-      fontSize: 28,
-      fontWeight: 'bold',
-      color: '#1a1a1a',
-      marginTop: 24,
-      marginBottom: 16,
-      lineHeight: 36,
-      borderBottomWidth: 2,
-      borderBottomColor: '#e1e4e8',
-      paddingBottom: 8,
-    },
-    heading2: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      color: '#1a1a1a',
-      marginTop: 20,
-      marginBottom: 12,
-      lineHeight: 32,
-      borderBottomWidth: 1,
-      borderBottomColor: '#eaecef',
-      paddingBottom: 6,
-    },
-    heading3: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: '#1a1a1a',
-      marginTop: 16,
-      marginBottom: 10,
-      lineHeight: 28,
-    },
-    heading4: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      color: '#1a1a1a',
-      marginTop: 16,
-      marginBottom: 8,
-      lineHeight: 26,
-    },
-    heading5: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      color: '#1a1a1a',
-      marginTop: 16,
-      marginBottom: 8,
-      lineHeight: 24,
-    },
-    heading6: {
-      fontSize: 14,
-      fontWeight: 'bold',
-      color: '#1a1a1a',
-      marginTop: 16,
-      marginBottom: 8,
-      lineHeight: 22,
-    },
-
-    // Paragraph styles
-    paragraph: {
-      fontSize: 16,
-      color: '#333',
-      lineHeight: 24,
-      marginBottom: 16,
-    },
-
-    // Code styles
-    code_inline: {
-      backgroundColor: '#f6f8fa',
-      color: '#d73a49',
-      fontFamily: Platform.select({
-        ios: 'Menlo-Regular',
-        android: 'monospace',
-        web: 'SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace',
-      }),
-      fontSize: 14,
-      paddingHorizontal: 4,
-      paddingVertical: 2,
-      borderRadius: 3,
-      borderWidth: 1,
-      borderColor: '#e1e4e8',
-    },
-    code_block: {
-      backgroundColor: '#f6f8fa',
-      borderRadius: 6,
-      padding: 16,
-      marginVertical: 12,
-      borderWidth: 1,
-      borderColor: '#e1e4e8',
-    },
-    fence: {
-      backgroundColor: '#f6f8fa',
-      borderRadius: 6,
-      padding: 16,
-      marginVertical: 12,
-      borderWidth: 1,
-      borderColor: '#e1e4e8',
-    },
-
-    // List styles
-    bullet_list: {
-      marginBottom: 16,
-    },
-    ordered_list: {
-      marginBottom: 16,
-    },
-    list_item: {
-      flexDirection: 'row',
-      marginBottom: 8,
-      paddingLeft: 4,
-    },
-    bullet_list_icon: {
-      fontSize: 16,
-      color: '#0366d6',
-      marginRight: 8,
-      marginTop: 4,
-    },
-    ordered_list_icon: {
-      fontSize: 16,
-      color: '#0366d6',
-      marginRight: 8,
-      marginTop: 4,
-      minWidth: 20,
-    },
-    bullet_list_content: {
-      flex: 1,
-    },
-    ordered_list_content: {
-      flex: 1,
-    },
-
-    // Link styles
-    link: {
-      color: '#0366d6',
-      textDecorationLine: Platform.OS === 'web' ? 'underline' : 'none',
-    },
-
-    // Emphasis styles
-    strong: {
-      fontWeight: 'bold',
-      color: '#1a1a1a',
-    },
-    em: {
-      fontStyle: 'italic',
-      color: '#1a1a1a',
-    },
-
-    // Blockquote styles
-    blockquote: {
-      backgroundColor: '#f6f8fa',
-      borderLeftWidth: 4,
-      borderLeftColor: '#dfe2e5',
-      paddingHorizontal: 16,
-      paddingVertical: 12,
-      marginVertical: 16,
-      borderRadius: 3,
-    },
-
-    // Table styles
-    table: {
-      borderWidth: 1,
-      borderColor: '#e1e4e8',
-      borderRadius: 6,
-      marginVertical: 16,
-      overflow: 'hidden',
-    },
-    thead: {
-      backgroundColor: '#f6f8fa',
-    },
-    tbody: {
-    },
-    th: {
-      borderRightWidth: 1,
-      borderRightColor: '#e1e4e8',
-      borderBottomWidth: 1,
-      borderBottomColor: '#e1e4e8',
-      padding: 12,
-    },
-    td: {
-      borderRightWidth: 1,
-      borderRightColor: '#e1e4e8',
-      borderBottomWidth: 1,
-      borderBottomColor: '#e1e4e8',
-      padding: 12,
-    },
-    tr: {
-      borderBottomWidth: 1,
-      borderBottomColor: '#e1e4e8',
-    },
-
-    // Horizontal rule
-    hr: {
-      backgroundColor: '#e1e4e8',
-      height: 2,
-      marginVertical: 24,
-      borderRadius: 1,
-    },
-
-    // Task list styles
-    checkbox: {
-      marginRight: 8,
-    },
-    checkbox_checked: {
-      color: '#28a745',
-    },
-    checkbox_unchecked: {
-      color: '#6a737d',
-    },
-  })
-
-  const rules = {
-    // Handle links with proper navigation
-    link: (node: any, children: any, parent: any, styles: any) => (
-      <TouchableOpacity
-        key={node.key}
-        onPress={() => handleLinkPress(node.attributes.href)}
-        activeOpacity={0.7}
-      >
-        <Markdown style={styles}>{children}</Markdown>
-      </TouchableOpacity>
-    ),
-
-    // Enhanced image handling (placeholder for now since images need special handling in RN)
-    image: (node: any, children: any, parent: any, styles: any) => (
-      <View key={node.key} style={imageStyles.container}>
-        <View style={imageStyles.placeholder}>
-          <Markdown style={styles}>🖼️ {node.attributes.alt || 'Image'}</Markdown>
-        </View>
-      </View>
-    ),
-  }
-
-  const imageStyles = StyleSheet.create({
-    container: {
-      marginVertical: 12,
-      alignItems: 'center',
-    },
-    placeholder: {
-      backgroundColor: '#f6f8fa',
-      padding: 16,
-      borderRadius: 6,
-      borderWidth: 1,
-      borderColor: '#e1e4e8',
-      borderStyle: 'dashed',
-    },
-  })
-
-  return (
-    <View style={[styles.container, style]}>
-      <Markdown
-        style={markdownStyles}
-        rules={rules}
-        onLinkPress={handleLinkPress}
-      >
-        {content}
-      </Markdown>
-    </View>
-  )
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  errorHeader: {
+    backgroundColor: '#fff3cd',
+    padding: 12,
+    borderRadius: 6,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#ffeaa7',
+  },
+  errorTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#856404',
+    marginBottom: 4,
+  },
+  errorSubtitle: {
+    fontSize: 14,
+    color: '#856404',
   },
 })
 

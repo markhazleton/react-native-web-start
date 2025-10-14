@@ -1,23 +1,34 @@
-import 'react-native-gesture-handler/jestSetup'
+// React Native Web Jest Setup with React Testing Library
+import '@testing-library/jest-dom'
 
-// Mock react-native modules
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
-
-// Mock Platform
-jest.mock('react-native/Libraries/Utilities/Platform', () => ({
-  OS: 'web',
-  select: jest.fn((obj) => obj.web || obj.default),
+// Mock documentation service to avoid import.meta issues
+jest.mock('./packages/shared/src/services/documentationService', () => ({
+  DocumentationService: {
+    getDocumentationFiles: jest.fn(() => Promise.resolve([])),
+    getDocumentationContent: jest.fn(() => Promise.resolve('# Mock Documentation')),
+    searchDocumentationFiles: jest.fn(() => []),
+  },
 }))
 
-// Mock console methods
+// Mock Platform for React Native Web
+jest.mock('react-native', () => ({
+  ...jest.requireActual('react-native-web'),
+  Platform: {
+    OS: 'web',
+    select: jest.fn((obj) => obj.web || obj.default),
+  },
+}))
+
+// Mock console methods to suppress warnings during tests
+const originalConsole = global.console
 global.console = {
-  ...console,
-  // Suppress console.log, console.info, console.warn
+  ...originalConsole,
+  // Suppress console.log, console.info, console.warn during tests
   log: jest.fn(),
   info: jest.fn(),
   warn: jest.fn(),
   // Keep console.error for debugging
-  error: console.error,
+  error: originalConsole.error,
 }
 
 // Setup test environment globals

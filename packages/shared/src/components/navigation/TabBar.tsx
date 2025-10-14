@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
       web: {
         boxShadow: '0 4px 16px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
         backdropFilter: 'blur(8px)',
-        background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+        // Note: React Native Web doesn't support CSS gradients in StyleSheet
+        // backgroundColor: '#ffffff', // Fallback for gradient
       },
       default: {
         shadowColor: '#000',
@@ -81,10 +82,10 @@ const styles = StyleSheet.create({
   },
   activeTab: {
     backgroundColor: '#3b82f6',
-    // Modern gradient for active state
+    // Modern gradient effect via backgroundImage for web
     ...Platform.select({
       web: {
-        background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+        // backgroundColor: '#3b82f6', // Solid fallback
         transform: 'scale(1.02)',
       },
     }),

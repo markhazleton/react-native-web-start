@@ -1,5 +1,4 @@
 module.exports = {
-  preset: 'react-native',
   roots: ['<rootDir>/src', '<rootDir>/packages'],
   testMatch: [
     '**/__tests__/**/*.(ts|tsx|js)',
@@ -7,11 +6,16 @@ module.exports = {
   ],
   transform: {
     '^.+\\.(ts|tsx)$': 'babel-jest',
+    '^.+\\.(js|jsx)$': 'babel-jest',
   },
+  transformIgnorePatterns: [
+    'node_modules/(?!(react-native-web|@testing-library/react|marked)/)',
+  ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@shared/(.*)$': '<rootDir>/packages/shared/src/$1',
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^react-native$': 'react-native-web',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testEnvironment: 'jsdom',
