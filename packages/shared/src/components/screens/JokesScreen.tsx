@@ -16,12 +16,13 @@ import { JokeResponse } from '../../types/api'
 const WebButton: React.FC<{
   onPress: () => void
   disabled?: boolean
-  style: any
+  style: unknown
   children: React.ReactNode
 }> = ({ onPress, disabled = false, style, children }) => {
-  const handleClick = useCallback((e: any) => {
-    e.preventDefault()
-    e.stopPropagation()
+  const handleClick = useCallback((e: unknown) => {
+    const event = e as { preventDefault: () => void; stopPropagation: () => void }
+    event.preventDefault()
+    event.stopPropagation()
     if (!disabled) {
       onPress()
     }
@@ -45,7 +46,7 @@ const WebButton: React.FC<{
         }}
         role="button"
         tabIndex={disabled ? -1 : 0}
-        onKeyDown={(e: any) => {
+        onKeyDown={(e: { key: string }) => {
           if (e.key === 'Enter' || e.key === ' ') {
             handleClick(e)
           }
@@ -123,7 +124,7 @@ const JokesScreen: React.FC = () => {
 
   useEffect(() => {
     fetchRandomJoke()
-  }, [])
+  }, [fetchRandomJoke])
 
   const renderJoke = () => {
     if (!joke) return null

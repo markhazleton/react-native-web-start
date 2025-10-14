@@ -15,22 +15,22 @@ const TabBar: React.FC<TabBarProps> = ({ activeTab, onTabPress }) => {
 
   return (
     <View style={styles.container}>
-      {tabs.map((tab) => (
+      {tabs.map((tabItem) => (
         <TouchableOpacity
-          key={tab.key}
+          key={tabItem.key}
           style={[
             styles.tab,
-            activeTab === tab.key && styles.activeTab,
+            activeTab === tabItem.key && styles.activeTab,
           ]}
-          onPress={() => onTabPress(tab.key)}
+          onPress={() => onTabPress(tabItem.key)}
         >
           <Text
             style={[
               styles.tabText,
-              activeTab === tab.key && styles.activeTabText,
+              activeTab === tabItem.key && styles.activeTabText,
             ]}
           >
-            {tab.title}
+            {tabItem.title}
           </Text>
         </TouchableOpacity>
       ))}
