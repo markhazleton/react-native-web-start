@@ -98,7 +98,7 @@
     "@react-native/typescript-config": "^0.82.0",
     "@tailwindcss/postcss": "^4.1.14",
     "@testing-library/jest-native": "^5.4.3",
-    "@testing-library/react-native": "^12.7.2",
+    "@testing-library/react-native": "^13.3.3",
     "@types/jest": "^30.0.0",
     "@types/marked": "^6.0.0",
     "@types/react": "^19.2.2",
