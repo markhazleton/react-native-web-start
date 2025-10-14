@@ -1,0 +1,27 @@
+# Global ownership
+
+* @markhazleton
+
+# Core configuration files
+
+/.github/ @markhazleton
+/package.json @markhazleton
+/tsconfig*.json @markhazleton
+/vite.config.ts @markhazleton
+/jest.config.js @markhazleton
+/eslint.config.js @markhazleton
+
+# Documentation
+
+/README.md @markhazleton
+/documentation/ @markhazleton
+
+# Security
+
+/.github/SECURITY.md @markhazleton
+/.github/dependabot.yml @markhazleton
+
+# Build and deployment
+
+/.github/workflows/ @markhazleton
+/scripts/ @markhazleton
