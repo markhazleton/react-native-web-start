@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Platform } from 'react-native'
 import WelcomeScreen from '../screens/WelcomeScreen'
 import JokesScreen from '../screens/JokesScreen'
+import JokesScreenWeb from '../screens/JokesScreenWeb'
 import DocumentationScreen from '../screens/DocumentationScreen'
 import TabBar from './TabBar'
 
@@ -13,7 +14,7 @@ const Navigation: React.FC = () => {
       case 'home':
         return <WelcomeScreen />
       case 'jokes':
-        return <JokesScreen />
+        return Platform.OS === 'web' ? <JokesScreenWeb /> : <JokesScreen />
       case 'docs':
         return <DocumentationScreen />
       default:

@@ -7,7 +7,15 @@ export class JokeApiService {
     url: string
   ): Promise<JokeResponse> {
     try {
-      const response = await fetch(url)
+      // Add cache-busting and proper headers for web
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        cache: 'no-cache', // Prevent caching issues
+      })
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
@@ -27,15 +35,15 @@ export class JokeApiService {
       return data
     } catch (error) {
       console.error(
-        'error on getting a joke',
+        '❌ Error in fetchWithErrorHandling:',
         error instanceof Error ? error.message : error
       )
 
       // Return a fallback joke on error
-      return {
+      const fallbackJoke: JokeResponse = {
         error: false,
         category: 'Programming',
-        type: 'single',
+        type: 'single' as const,
         joke: 'Why do programmers prefer dark mode? Because light attracts bugs! 🐛',
         flags: {
           nsfw: false,
@@ -49,6 +57,7 @@ export class JokeApiService {
         safe: true,
         lang: 'en',
       }
+      return fallbackJoke
     }
   }
 

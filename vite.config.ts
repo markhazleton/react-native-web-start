@@ -37,14 +37,22 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
-    headers: {
-      // Add Content Security Policy to allow joke API
-      'Content-Security-Policy':
-        "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://v2.jokeapi.dev https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com;",
-    },
+    // Remove CSP headers for development to avoid conflicts
+    // CSP should be handled by the production server/CDN
   },
   build: {
     outDir: 'dist',
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split vendor libraries into separate chunks
+          'react-vendor': ['react', 'react-dom'],
+          'react-native-vendor': ['react-native-web'],
+          utils: ['marked'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600, // Increase limit slightly to reduce warnings
   },
 })

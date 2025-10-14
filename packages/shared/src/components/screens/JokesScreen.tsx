@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { 
   View, 
   Text, 
@@ -12,19 +12,75 @@ import {
 import { JokeApiService } from '../../services/jokeApi'
 import { JokeResponse } from '../../types/api'
 
+// Web-specific button component
+const WebButton: React.FC<{
+  onPress: () => void
+  disabled?: boolean
+  style: any
+  children: React.ReactNode
+}> = ({ onPress, disabled = false, style, children }) => {
+  const handleClick = useCallback((e: any) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (!disabled) {
+      onPress()
+    }
+  }, [onPress, disabled])
+
+  if (Platform.OS === 'web') {
+    return (
+      <div
+        onClick={handleClick}
+        style={{
+          ...style,
+          border: 'none',
+          outline: 'none',
+          cursor: disabled ? 'not-allowed' : 'pointer',
+          opacity: disabled ? 0.6 : 1,
+          fontFamily: 'inherit',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          userSelect: 'none',
+        }}
+        role="button"
+        tabIndex={disabled ? -1 : 0}
+        onKeyDown={(e: any) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleClick(e)
+          }
+        }}
+      >
+        {children}
+      </div>
+    )
+  }
+  return (
+    <TouchableOpacity onPress={onPress} disabled={disabled} style={style}>
+      {children}
+    </TouchableOpacity>
+  )
+}
+
 const JokesScreen: React.FC = () => {
   const [joke, setJoke] = useState<JokeResponse | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [clickCount, setClickCount] = useState(0) // Debug counter
 
-  const fetchRandomJoke = async () => {
+  const fetchRandomJoke = useCallback(async () => {
+    console.warn('🔍 fetchRandomJoke called')
+    setClickCount(prev => prev + 1) // Increment debug counter
     setLoading(true)
     setError(null)
     
     try {
+      console.warn('🌐 Calling JokeApiService.getRandomJoke()')
       const jokeData = await JokeApiService.getRandomJoke()
+      console.warn('✅ Joke data received:', jokeData)
       setJoke(jokeData)
     } catch (err) {
+      console.error('❌ Error in fetchRandomJoke:', err)
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch joke'
       setError(errorMessage)
       
@@ -37,16 +93,21 @@ const JokesScreen: React.FC = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
-  const fetchProgrammingJoke = async () => {
+  const fetchProgrammingJoke = useCallback(async () => {
+    console.warn('🔍 fetchProgrammingJoke called')
+    setClickCount(prev => prev + 1) // Increment debug counter
     setLoading(true)
     setError(null)
     
     try {
+      console.warn('🌐 Calling JokeApiService.getProgrammingJoke()')
       const jokeData = await JokeApiService.getProgrammingJoke()
+      console.warn('✅ Programming joke data received:', jokeData)
       setJoke(jokeData)
     } catch (err) {
+      console.error('❌ Error in fetchProgrammingJoke:', err)
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch programming joke'
       setError(errorMessage)
       
@@ -58,7 +119,7 @@ const JokesScreen: React.FC = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   useEffect(() => {
     fetchRandomJoke()
@@ -86,10 +147,11 @@ const JokesScreen: React.FC = () => {
       <View style={styles.header}>
         <Text style={styles.title}>😂 Joke Generator</Text>
         <Text style={styles.subtitle}>Powered by JokeAPI</Text>
+        <Text style={styles.subtitle}>Debug: Clicks = {clickCount}</Text>
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableOpacity 
+        <WebButton 
           style={[styles.button, styles.primaryButton]} 
           onPress={fetchRandomJoke}
           disabled={loading}
@@ -97,9 +159,9 @@ const JokesScreen: React.FC = () => {
           <Text style={styles.primaryButtonText}>
             {loading ? 'Loading...' : '🎲 Random Joke'}
           </Text>
-        </TouchableOpacity>
+        </WebButton>
 
-        <TouchableOpacity 
+        <WebButton 
           style={[styles.button, styles.secondaryButton]} 
           onPress={fetchProgrammingJoke}
           disabled={loading}
@@ -107,7 +169,7 @@ const JokesScreen: React.FC = () => {
           <Text style={styles.secondaryButtonText}>
             {loading ? 'Loading...' : '💻 Programming Joke'}
           </Text>
-        </TouchableOpacity>
+        </WebButton>
       </View>
 
       <View style={styles.jokeContainer}>
@@ -121,14 +183,14 @@ const JokesScreen: React.FC = () => {
         {error && (
           <View style={styles.errorContainer}>
             <Text style={styles.errorText}>❌ {error}</Text>
-            <TouchableOpacity style={styles.retryButton} onPress={fetchRandomJoke}>
+            <WebButton style={styles.retryButton} onPress={fetchRandomJoke}>
               <Text style={styles.retryButtonText}>Try Again</Text>
-            </TouchableOpacity>
+            </WebButton>
           </View>
         )}
 
         {!loading && !error && joke && (
-          <View style={styles.card}>
+          <View style={styles.card} key={joke.id || Math.random()}>
             <Text style={styles.categoryText}>Category: {joke.category}</Text>
             {renderJoke()}
             <View style={styles.jokeFooter}>

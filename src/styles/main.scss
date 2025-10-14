@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import './variables.scss';
+@use './variables.scss' as vars;
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
