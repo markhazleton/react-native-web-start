@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, ScrollView, Platform } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Platform, ViewStyle } from 'react-native'
 
 interface MarkdownRendererProps {
   content: string
-  style?: any
+  style?: ViewStyle
 }
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, style }) => {
@@ -11,7 +11,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, style }) =
     // Split content into lines for processing
     const lines = markdown.split('\n')
     const elements: React.ReactElement[] = []
-    let currentIndex = 0
+    const currentIndex = 0
 
     lines.forEach((line, index) => {
       const key = `${currentIndex}-${index}`
@@ -110,37 +110,26 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, style }) =
 
   const processInlineMarkdown = (text: string): React.ReactNode => {
     // Simple inline markdown processing
-    const elements: React.ReactNode[] = []
-    let remaining = text
-    let key = 0
-    
-    // Process bold, italic, code, and links in order
-    const patterns = [
-      { regex: /\*\*(.*?)\*\*/g, style: styles.bold, name: 'bold' },
-      { regex: /\*(.*?)\*/g, style: styles.italic, name: 'italic' },
-      { regex: /`(.*?)`/g, style: styles.inlineCode, name: 'code' },
-    ]
-    
     // Simple approach: replace markdown with styled text
     let result = text
     
     // Bold text
-    result = result.replace(/\*\*(.*?)\*\*/g, (match, content) => {
+    result = result.replace(/\*\*(.*?)\*\*/g, (_match, content) => {
       return content // For now, just return the content
     })
     
     // Italic text  
-    result = result.replace(/\*(.*?)\*/g, (match, content) => {
+    result = result.replace(/\*(.*?)\*/g, (_match, content) => {
       return content
     })
     
     // Inline code
-    result = result.replace(/`(.*?)`/g, (match, content) => {
+    result = result.replace(/`(.*?)`/g, (_match, content) => {
       return content
     })
     
     // Links [text](url)
-    result = result.replace(/\[([^\]]+)\]\([^)]+\)/g, (match, linkText) => {
+    result = result.replace(/\[([^\]]+)\]\([^)]+\)/g, (_match, linkText) => {
       return linkText
     })
     

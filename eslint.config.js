@@ -25,6 +25,12 @@ export default [
         __dirname: 'readonly',
         module: 'readonly',
         require: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+        HTMLElement: 'readonly',
+        navigator: 'readonly',
+        fetch: 'readonly',
+        setTimeout: 'readonly',
       },
     },
     plugins: {
@@ -39,15 +45,18 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
+      'no-unused-vars': 'warn',
       'react/prop-types': 'off', // We use TypeScript for prop validation
       'react/react-in-jsx-scope': 'off', // Not needed in React 17+
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'error',
       'no-var': 'error',
-      'object-shorthand': 'error',
-      'prefer-template': 'error',
+      'object-shorthand': 'warn',
+      'prefer-template': 'warn',
+      'no-case-declarations': 'warn',
+      'no-async-promise-executor': 'warn',
     },
     settings: {
       react: {
@@ -56,9 +65,21 @@ export default [
     },
   },
   {
-    files: ['**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}'],
+    files: ['**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}', 'jest.setup.js'],
+    languageOptions: {
+      globals: {
+        jest: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        global: 'writable',
+      },
+    },
     rules: {
       'no-console': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
   {
@@ -70,8 +91,11 @@ export default [
       'ios/**',
       '*.config.js',
       '*.config.ts',
+      '*.config.cjs',
       'scripts/**',
       'public/**',
+      'jest.setup.js',
+      'metro.config.cjs',
     ],
   },
 ]

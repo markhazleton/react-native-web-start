@@ -28,10 +28,6 @@ const DocumentationBrowserScreen: React.FC<DocumentationBrowserScreenProps> = ({
     loadDocumentationFiles()
   }, [])
 
-  useEffect(() => {
-    filterFiles()
-  }, [searchQuery, files])
-
   const loadDocumentationFiles = async () => {
     try {
       setLoading(true)
@@ -49,7 +45,7 @@ const DocumentationBrowserScreen: React.FC<DocumentationBrowserScreenProps> = ({
     }
   }
 
-  const filterFiles = () => {
+  const filterFiles = React.useCallback(() => {
     if (!searchQuery.trim()) {
       setFilteredFiles(files)
     } else {
@@ -60,7 +56,11 @@ const DocumentationBrowserScreen: React.FC<DocumentationBrowserScreenProps> = ({
       )
       setFilteredFiles(filtered)
     }
-  }
+  }, [searchQuery, files])
+
+  useEffect(() => {
+    filterFiles()
+  }, [filterFiles])
 
   const handleFilePress = (file: DocumentationFile) => {
     onFileSelect(file)

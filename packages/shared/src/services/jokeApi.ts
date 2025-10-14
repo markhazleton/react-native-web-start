@@ -1,9 +1,9 @@
-import { JokeResponse, ApiError } from "../types/api";
+import { JokeResponse } from "../types/api";
 
 const BASE_URL = "https://v2.jokeapi.dev/joke";
 
 export class JokeApiService {
-  private static async fetchWithErrorHandling(url: string): Promise<any> {
+  private static async fetchWithErrorHandling(url: string): Promise<JokeResponse> {
     try {
       const response = await fetch(url);
 
@@ -11,11 +11,12 @@ export class JokeApiService {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data: JokeResponse = await response.json();
 
       // Check if the API returned an error
-      if (data.error) {
-        throw new Error(data.message || "API returned an error");
+      if ('error' in data && data.error) {
+        const errorMessage = ('message' in data && typeof data.message === 'string') ? data.message : "API returned an error";
+        throw new Error(errorMessage);
       }
 
       return data;

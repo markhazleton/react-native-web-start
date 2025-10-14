@@ -27,11 +27,7 @@ const DocumentationReaderScreen: React.FC<DocumentationReaderScreenProps> = ({ f
   const [useHtmlRenderer, setUseHtmlRenderer] = useState<boolean>(false) // Default to basic renderer
   const { width } = Dimensions.get('window')
 
-  useEffect(() => {
-    loadDocumentationContent()
-  }, [file])
-
-  const loadDocumentationContent = async () => {
+  const loadDocumentationContent = React.useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
@@ -46,7 +42,11 @@ const DocumentationReaderScreen: React.FC<DocumentationReaderScreenProps> = ({ f
     } finally {
       setLoading(false)
     }
-  }
+  }, [file.name])
+
+  useEffect(() => {
+    loadDocumentationContent()
+  }, [loadDocumentationContent])
 
   const renderError = () => (
     <View style={styles.errorState}>

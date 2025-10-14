@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, StyleSheet, Platform } from 'react-native'
+import { View, StyleSheet, Platform, ViewStyle } from 'react-native'
 import RenderHtml from 'react-native-render-html'
 import { marked } from 'marked'
 
 interface HtmlMarkdownRendererProps {
   content: string
-  style?: any
-  contentWidth?: number
+  style?: ViewStyle
+  contentWidth: number
 }
 
 const HtmlMarkdownRenderer: React.FC<HtmlMarkdownRendererProps> = ({ 
@@ -117,10 +117,14 @@ const HtmlMarkdownRenderer: React.FC<HtmlMarkdownRendererProps> = ({
         renderersProps={{
           // Ensure links don't interfere with navigation
           a: {
-            onPress: (event: any, href: string) => {
-              event.preventDefault()
+            onPress: (event: unknown, href: string) => {
+              if (event && typeof event === 'object' && 'preventDefault' in event) {
+                (event as { preventDefault: () => void }).preventDefault()
+              }
               if (Platform.OS === 'web') {
-                window.open(href, '_blank')
+                if (typeof window !== 'undefined') {
+                  window.open(href, '_blank')
+                }
               }
               return false
             },
