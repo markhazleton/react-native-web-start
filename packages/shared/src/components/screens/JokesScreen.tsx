@@ -30,8 +30,26 @@ const WebButton: React.FC<{
   }, [onPress, disabled])
 
   if (Platform.OS === 'web') {
-    // Cast style for web compatibility  
-    const webStyle = style as Record<string, string | number>
+    // Properly flatten React Native styles for web compatibility
+    const flattenStyle = (styleObj: unknown): Record<string, string | number> => {
+      if (!styleObj) return {}
+      if (Array.isArray(styleObj)) {
+        return styleObj.reduce((acc, item) => ({ ...acc, ...flattenStyle(item) }), {})
+      }
+      if (typeof styleObj === 'object' && styleObj !== null) {
+        const result: Record<string, string | number> = {}
+        Object.keys(styleObj).forEach(key => {
+          const value = (styleObj as Record<string, unknown>)[key]
+          if (typeof value === 'string' || typeof value === 'number') {
+            result[key] = value
+          }
+        })
+        return result
+      }
+      return {}
+    }
+    
+    const webStyle = flattenStyle(style)
     return (
       <div
         onClick={handleClick}
