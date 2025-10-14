@@ -7,7 +7,9 @@ import {
   TouchableOpacity, 
   ActivityIndicator,
   Platform,
-  Alert
+  Alert,
+  StyleProp,
+  ViewStyle
 } from 'react-native'
 import { JokeApiService } from '../../services/jokeApi'
 import { JokeResponse } from '../../types/api'
@@ -16,24 +18,25 @@ import { JokeResponse } from '../../types/api'
 const WebButton: React.FC<{
   onPress: () => void
   disabled?: boolean
-  style: unknown
+  style: StyleProp<ViewStyle>
   children: React.ReactNode
 }> = ({ onPress, disabled = false, style, children }) => {
-  const handleClick = useCallback((e: unknown) => {
-    const event = e as { preventDefault: () => void; stopPropagation: () => void }
-    event.preventDefault()
-    event.stopPropagation()
+  const handleClick = useCallback((e: React.SyntheticEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
     if (!disabled) {
       onPress()
     }
   }, [onPress, disabled])
 
   if (Platform.OS === 'web') {
+    // Cast style for web compatibility  
+    const webStyle = style as Record<string, string | number>
     return (
       <div
         onClick={handleClick}
         style={{
-          ...style,
+          ...webStyle,
           border: 'none',
           outline: 'none',
           cursor: disabled ? 'not-allowed' : 'pointer',
@@ -46,7 +49,7 @@ const WebButton: React.FC<{
         }}
         role="button"
         tabIndex={disabled ? -1 : 0}
-        onKeyDown={(e: { key: string }) => {
+        onKeyDown={(e: React.KeyboardEvent) => {
           if (e.key === 'Enter' || e.key === ' ') {
             handleClick(e)
           }

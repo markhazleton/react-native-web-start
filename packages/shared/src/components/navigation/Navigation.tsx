@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Platform } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import WelcomeScreen from '../screens/WelcomeScreen'
 import JokesScreen from '../screens/JokesScreen'
-import JokesScreenWeb from '../screens/JokesScreenWeb'
 import DocumentationScreen from '../screens/DocumentationScreen'
 import TabBar from './TabBar'
 
@@ -14,7 +13,8 @@ const Navigation: React.FC = () => {
       case 'home':
         return <WelcomeScreen />
       case 'jokes':
-        return Platform.OS === 'web' ? <JokesScreenWeb /> : <JokesScreen />
+        // For now, always use the unified JokesScreen which handles both web and mobile
+        return <JokesScreen />
       case 'docs':
         return <DocumentationScreen />
       default:
