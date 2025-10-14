@@ -6,6 +6,8 @@ export class JokeApiService {
   private static async fetchWithErrorHandling(
     url: string
   ): Promise<JokeResponse> {
+    console.warn('🌍 JokeAPI: Attempting to fetch:', url)
+
     try {
       // Add cache-busting and proper headers for web
       const response = await fetch(url, {
@@ -17,11 +19,22 @@ export class JokeApiService {
         cache: 'no-cache', // Prevent caching issues
       })
 
+      console.warn(
+        '🌍 JokeAPI: Response status:',
+        response.status,
+        response.statusText
+      )
+      console.warn(
+        '🌍 JokeAPI: Response headers:',
+        Object.fromEntries(response.headers.entries())
+      )
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
       const data: JokeResponse = await response.json()
+      console.warn('🌍 JokeAPI: Parsed data:', data)
 
       // Check if the API returned an error
       if ('error' in data && data.error) {
@@ -38,6 +51,7 @@ export class JokeApiService {
         '❌ Error in fetchWithErrorHandling:',
         error instanceof Error ? error.message : error
       )
+      console.error('❌ Full error object:', error)
 
       // Return a fallback joke on error
       const fallbackJoke: JokeResponse = {
@@ -57,6 +71,7 @@ export class JokeApiService {
         safe: true,
         lang: 'en',
       }
+      console.warn('🔄 JokeAPI: Returning fallback joke:', fallbackJoke)
       return fallbackJoke
     }
   }

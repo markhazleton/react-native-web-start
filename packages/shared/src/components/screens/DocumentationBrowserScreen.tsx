@@ -14,6 +14,7 @@ import { DocumentationFile } from '../../types/documentation'
 import { DocumentationService } from '../../services/documentationService'
 
 interface DocumentationBrowserScreenProps {
+  // eslint-disable-next-line no-unused-vars
   onFileSelect: (file: DocumentationFile) => void
 }
 

@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -85,14 +85,12 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -100,21 +98,23 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { AppRegistry, Platform } from 'react-native'
 import { createRoot } from 'react-dom/client'
-import { AppRegistry } from 'react-native'
 import App from '@shared/App'
 import './styles/main.scss'
-&nbsp;
-// Register the app for React Native Web
-<span class="cstat-no" title="statement not covered" >AppRegistry.registerComponent('App', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >App)</span></span>
 &nbsp;
 // Get the root element
 const container = <span class="cstat-no" title="statement not covered" >document.getElementById('root')</span>
@@ -122,13 +122,19 @@ const container = <span class="cstat-no" title="statement not covered" >document
 <span class="cstat-no" title="statement not covered" >  throw new Error('Root element not found')</span>
 }
 &nbsp;
-// Create root and render the app
-const root = <span class="cstat-no" title="statement not covered" >createRoot(container)</span>
-&nbsp;
-// Start the app
-<span class="cstat-no" title="statement not covered" >AppRegistry.runApplication('App', {</span>
-  rootTag: container,
-})
+<span class="cstat-no" title="statement not covered" >if (Platform.OS === 'web') {</span>
+  // Use React 18's createRoot for better event handling on web
+  const root = <span class="cstat-no" title="statement not covered" >createRoot(container)</span>
+<span class="cstat-no" title="statement not covered" >  root.render(&lt;App /&gt;)</span>
+} else {
+  // Register the app for React Native
+<span class="cstat-no" title="statement not covered" >  AppRegistry.registerComponent('App', <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >App)</span></span>
+  
+  // Use AppRegistry.runApplication for native platforms
+<span class="cstat-no" title="statement not covered" >  AppRegistry.runApplication('App', {</span>
+    rootTag: container,
+  })
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -136,7 +142,7 @@ const root = <span class="cstat-no" title="statement not covered" >createRoot(co
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-10-14T14:12:01.770Z
+                at 2025-10-14T21:17:07.009Z
             </div>
         <script src="../prettify.js"></script>
         <script>
