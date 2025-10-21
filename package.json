@@ -80,7 +80,6 @@
     "react-dom": "^19.2.0",
     "react-native": "^0.82.1",
     "react-native-render-html": "^6.3.4",
-    "react-native-super-grid": "^6.0.2",
     "react-native-web": "^0.21.2"
   },
   "overrides": {
