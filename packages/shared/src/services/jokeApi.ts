@@ -24,10 +24,18 @@ export class JokeApiService {
         response.status,
         response.statusText
       )
-      console.warn(
-        '🌍 JokeAPI: Response headers:',
-        Object.fromEntries(response.headers.entries())
-      )
+
+      // Safely handle headers - they might not be available in all environments
+      try {
+        console.warn(
+          '🌍 JokeAPI: Response headers:',
+          response.headers
+            ? Object.fromEntries(response.headers.entries())
+            : 'No headers available'
+        )
+      } catch (error) {
+        console.warn('🌍 JokeAPI: Could not read response headers:', error)
+      }
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
