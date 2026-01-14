@@ -1,6 +1,8 @@
 # 🛡️ Security Vulnerability Resolution Summary
 
-## ✅ **Issues Successfully Resolved**
+> **Note:** This document is archived. The security vulnerabilities described herein have been resolved. For current security practices, see [SECURITY.md](./.github/SECURITY.md) and run `npm run security:full-check` for up-to-date security status.
+
+## ✅ **Issues Successfully Resolved** (Archived)
 
 ### 1. **Critical Dependency Vulnerabilities** ✅ FIXED
 

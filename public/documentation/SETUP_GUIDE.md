@@ -1,5 +1,7 @@
 # React Native Web with Vite - Complete Setup Guide
 
+> **Note:** This guide covers web-only setup. For the complete cross-platform setup (Web, iOS, Android), see [COMPLETE_SETUP_GUIDE.md](./COMPLETE_SETUP_GUIDE.md).
+
 This guide provides step-by-step instructions to create a React Native Web application using Vite as the build tool. This setup allows you to write React Native components that run efficiently on the web.
 
 ## Table of Contents

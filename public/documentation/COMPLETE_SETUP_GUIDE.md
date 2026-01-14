@@ -78,30 +78,38 @@ git init
 ### Step 4: Install Core Dependencies
 
 ```bash
-# Install React with exact versions for compatibility
-npm install react@18.2.0 react-dom@18.2.0
+# Install React with latest versions
+npm install react@^19.2.3 react-dom@^19.2.3
 
 # Install React Native and React Native Web
-npm install react-native@^0.74.0 react-native-web@^0.19.12
+npm install react-native@^0.83.1 react-native-web@^0.21.2
 ```
 
 ### Step 5: Install Development Dependencies
 
 ```bash
 # Install Vite and React plugin
-npm install -D vite @vitejs/plugin-react
+npm install -D vite@^7.3.1 @vitejs/plugin-react@^5.1.2
 
 # Install TypeScript and types
-npm install -D typescript @types/react @types/react-dom @types/react-test-renderer
+npm install -D typescript@^5.9.3 @types/react@^19.2.8 @types/react-dom@^19.2.3
 
-# Install React Native development tools
-npm install -D @babel/core @babel/preset-env @babel/runtime
-npm install -D @react-native/babel-preset @react-native/eslint-config
-npm install -D @react-native/metro-config @react-native/typescript-config
+# Install React Native development tools  
+npm install -D @babel/core@^7.28.6 @babel/preset-env@^7.28.6
+npm install -D @react-native/babel-preset@^0.83.1
+npm install -D @react-native/metro-config@^0.83.1
+npm install -D @react-native/typescript-config@^0.83.1
+
+# Install styling tools
+npm install -D tailwindcss@^4.1.18 @tailwindcss/postcss@^4.1.18
+npm install -D sass@^1.97.2 postcss@^8.5.6
 
 # Install testing and development tools
-npm install -D @types/jest babel-jest jest metro-react-native-babel-preset
-npm install -D eslint prettier react-test-renderer
+npm install -D jest@^30.2.0 @types/jest@^30.0.0
+npm install -D eslint@^9.39.2 prettier@^3.7.4
+
+# Install markdown rendering
+npm install marked@^17.0.1 react-native-render-html@^6.3.4
 ```
 
 ### Step 6: Install Dependencies with Compatibility Fix

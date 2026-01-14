@@ -1,6 +1,8 @@
 # Dependency Security Analysis
 
-## Current Vulnerability
+> **Note:** This document is archived. The issues described have been resolved by using the `marked` library with custom secure renderers. For current security information, see [SECURITY.md](./.github/SECURITY.md).
+
+## Historical Vulnerability (Resolved)
 
 - **Package**: `react-native-markdown-display`
 - **Vulnerable Dependency**: `markdown-it <12.3.2`

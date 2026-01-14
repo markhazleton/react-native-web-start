@@ -1,5 +1,7 @@
 # The Building of React-native-web-start: A Cross-Platform Development Journey
 
+> **Note:** This is a narrative document describing the development journey. For current technical specifications and versions, see [README.md](../README.md), [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md), and [COMPLETE_SETUP_GUIDE.md](./COMPLETE_SETUP_GUIDE.md).
+
 *By Mark Hazleton, Solutions Architect and Creator of WebSpark, TeachSpark, ArtSpark, and PromptSpark*
 
 *Published on markhazleton.com | January 2025*

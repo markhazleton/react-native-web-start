@@ -1,9 +1,9 @@
 # 🚀 React Native Web Vite Starter
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-blue.svg)](https://www.typescriptlang.org/)
-[![React Native](https://img.shields.io/badge/React%20Native-0.74.0-blue.svg)](https://reactnative.dev/)
-[![Vite](https://img.shields.io/badge/Vite-7.0.6-646CFF.svg)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-blue.svg)](https://www.typescriptlang.org/)
+[![React Native](https://img.shields.io/badge/React%20Native-0.83.1-blue.svg)](https://reactnative.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7.3.1-646CFF.svg)](https://vitejs.dev/)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen.svg)](https://markhazleton.github.io/react-native-web-start)
 
 > **A production-ready, enterprise-grade starter template for building cross-platform applications using React Native Web, Vite, and TypeScript. Write once, deploy everywhere: Web, iOS, and Android.**
@@ -73,16 +73,16 @@
 
 | Component | Technology | Version | Purpose |
 |-----------|------------|---------|---------|
-| **Frontend Framework** | React Native | 0.80.2 | Cross-platform mobile development |
-| **Web Compatibility** | React Native Web | 0.21.0 | Web platform support |
-| **Build Tool** | Vite | 7.0.6 | Fast development and production builds |
-| **Language** | TypeScript | 5.9.2 | Type safety and developer experience |
-| **Bundler (Mobile)** | Metro | 0.80.2 | React Native bundling and transformation |
-| **Styling** | Tailwind CSS | 4.1.11 | Utility-first CSS framework |
-| **CSS Preprocessor** | Sass | 1.90.0 | Enhanced CSS with variables and mixins |
-| **UI Framework** | React | 19.1.1 | Modern React with latest features |
+| **Frontend Framework** | React Native | 0.83.1 | Cross-platform mobile development |
+| **Web Compatibility** | React Native Web | 0.21.2 | Web platform support |
+| **Build Tool** | Vite | 7.3.1 | Fast development and production builds |
+| **Language** | TypeScript | 5.9.3 | Type safety and developer experience |
+| **Bundler (Mobile)** | Metro | 0.83.1 | React Native bundling and transformation |
+| **Styling** | Tailwind CSS | 4.1.18 | Utility-first CSS framework |
+| **CSS Preprocessor** | Sass | 1.97.2 | Enhanced CSS with variables and mixins |
+| **UI Framework** | React | 19.2.3 | Modern React with latest features |
 | **HTTP Client** | Fetch API | Native | API communication and data fetching |
-| **Markdown Processing** | Marked | 16.1.2 | Markdown parsing and rendering |
+| **Markdown Processing** | Marked | 17.0.1 | Markdown parsing and rendering |
 
 ### **Project Structure**
 
@@ -213,9 +213,9 @@ Access comprehensive documentation directly in the application:
 
 | Component Type | Count | Examples |
 |----------------|-------|----------|
-| **Screens** | 6 | WelcomeScreen, JokesScreen, DocumentationScreen |
+| **Screens** | 5 | WelcomeScreen, JokesScreen, DocumentationScreen, DocumentationBrowserScreen, DocumentationReaderScreen |
 | **Navigation** | 2 | Navigation, TabBar |
-| **Common** | 3 | Footer, MarkdownRenderer |
+| **Common** | 4 | Footer, MarkdownRenderer, HtmlMarkdownRenderer, SecureMarkdownRenderer |
 | **Services** | 3 | DocumentationService, BuildInfoService, JokeAPI |
 
 ---
@@ -250,8 +250,8 @@ Access comprehensive documentation directly in the application:
 
 | Technology | Purpose | Features |
 |------------|---------|----------|
-| **Tailwind CSS 4.1.11** | Utility-first CSS framework | Modern utility classes, responsive design |
-| **Sass 1.90.0** | CSS preprocessor | Variables, mixins, enhanced CSS features |
+| **Tailwind CSS 4.1.18** | Utility-first CSS framework | Modern utility classes, responsive design |
+| **Sass 1.97.2** | CSS preprocessor | Variables, mixins, enhanced CSS features |
 | **PostCSS** | CSS transformation | Autoprefixer, Tailwind processing |
 | **Platform.select()** | Cross-platform styling | Platform-specific style overrides |
 | **CSS Custom Properties** | Design tokens | Modern CSS variables for consistent theming |
@@ -495,12 +495,12 @@ We welcome contributions! Please see our contributing guidelines:
 - **Bundle Size**: ~321KB (100KB gzipped)
 - **Build Time**: <1 second (development), ~870ms (production)
 - **Platforms**: 3 (Web, iOS, Android)
-- **Dependencies**: 8 runtime, 27 development
-- **Components**: 6 screens, 3 common components, 1 navigation system
+- **Dependencies**: 6 runtime, 30+ development
+- **Components**: 5 screen components, 4 common components, 2 navigation components
 - **Services**: 3 (Documentation, Build Info, Joke API)
-- **Code Coverage**: Target 80%+ (setup in progress)
+- **Code Coverage**: Jest configured with initial test suite
 - **TypeScript**: 100% type coverage
-- **Modern Features**: Tailwind CSS, SCSS, ESM modules, Vite HMR
+- **Modern Features**: Tailwind CSS 4, SCSS, ESM modules, Vite HMR, Monorepo structure
 
 ---
 

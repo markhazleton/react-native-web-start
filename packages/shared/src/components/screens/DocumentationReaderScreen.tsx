@@ -24,7 +24,7 @@ const DocumentationReaderScreen: React.FC<DocumentationReaderScreenProps> = ({ f
   const [content, setContent] = useState<DocumentationContent | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const [useHtmlRenderer, setUseHtmlRenderer] = useState<boolean>(false) // Default to basic renderer
+  const [useHtmlRenderer, setUseHtmlRenderer] = useState<boolean>(true) // Use HTML renderer by default
   const { width } = Dimensions.get('window')
 
   const loadDocumentationContent = React.useCallback(async () => {

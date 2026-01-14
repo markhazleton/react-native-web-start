@@ -18,7 +18,7 @@ module.exports = {
     '^react-native$': 'react-native-web',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/config/jest.setup.js'],
   testEnvironment: 'jsdom',
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',

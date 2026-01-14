@@ -6,11 +6,10 @@ This project now includes Tailwind CSS and SASS integration for enhanced styling
 
 ### Dependencies Added
 
-- `tailwindcss` - Utility-first CSS framework
-- `@tailwindcss/postcss` - PostCSS plugin for Tailwind CSS
-- `postcss` - CSS post-processor
-- `autoprefixer` - Adds vendor prefixes automatically
-- `sass` - CSS preprocessor with variables, nesting, and mixins
+- `tailwindcss@^4.1.18` - Utility-first CSS framework (v4)
+- `@tailwindcss/postcss@^4.1.18` - PostCSS plugin for Tailwind CSS v4
+- `postcss@^8.5.6` - CSS post-processor
+- `sass@^1.97.2` - CSS preprocessor with variables, nesting, and mixins
 
 ### Configuration Files
 
