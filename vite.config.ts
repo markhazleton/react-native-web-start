@@ -45,11 +45,21 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Split vendor libraries into separate chunks
-          'react-vendor': ['react', 'react-dom'],
-          'react-native-vendor': ['react-native-web'],
-          utils: ['marked'],
+        // Keep chunking explicit while staying compatible with current bundler internals.
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+
+          if (id.includes('react-native-web')) {
+            return 'react-native-vendor'
+          }
+
+          if (id.includes('/react/') || id.includes('/react-dom/')) {
+            return 'react-vendor'
+          }
+
+          if (id.includes('/marked/')) {
+            return 'utils'
+          }
         },
       },
     },

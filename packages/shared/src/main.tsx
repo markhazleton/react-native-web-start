@@ -5,7 +5,6 @@ import App from './App'
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
     registrations.forEach((registration) => {
-      console.log('Unregistering service worker:', registration)
       registration.unregister()
     })
   })

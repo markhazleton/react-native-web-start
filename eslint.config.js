@@ -65,7 +65,12 @@ export default [
     },
   },
   {
-    files: ['**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}', 'jest.setup.js'],
+    files: [
+      '**/*.test.{js,jsx,ts,tsx}',
+      '**/*.spec.{js,jsx,ts,tsx}',
+      'jest.setup.js',
+      'config/jest.setup.js',
+    ],
     languageOptions: {
       globals: {
         jest: 'readonly',
