@@ -75,7 +75,7 @@
     "rebuild": "npm run clean && npm run build"
   },
   "dependencies": {
-    "marked": "^17.0.1",
+    "marked": "^17.0.5",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-native": "^0.83.1",
