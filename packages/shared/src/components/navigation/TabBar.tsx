@@ -3,7 +3,6 @@ import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native
 
 interface TabBarProps {
   activeTab: string
-  // eslint-disable-next-line no-unused-vars
   onTabPress: (tabKey: string) => void
 }
 

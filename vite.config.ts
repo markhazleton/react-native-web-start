@@ -63,6 +63,6 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 600, // Increase limit slightly to reduce warnings
+    chunkSizeWarningLimit: 1000, // Keep warnings meaningful for this project's current vendor split
   },
 })

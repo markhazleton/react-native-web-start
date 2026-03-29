@@ -69,8 +69,6 @@ function checkPackageScripts() {
     
     const requiredScripts = [
       'copy-docs',
-      'copy-docs:win',
-      'copy-docs:unix',
       'prebuild',
       'predeploy',
       'deploy'

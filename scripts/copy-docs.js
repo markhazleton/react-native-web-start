@@ -17,11 +17,6 @@ const docMappings = [
     destination: 'public/documentation',
     recursive: true,
     description: 'All documentation files'
-  },
-  {
-    source: 'README.md',
-    destination: 'public/documentation/README.md',
-    description: 'Root README file'
   }
 ];
 
@@ -62,38 +57,13 @@ function copyDirectory(src, dest) {
   return true;
 }
 
-// Function to copy single file
-function copyFile(src, dest) {
-  const srcPath = path.join(rootDir, src);
-  const destPath = path.join(rootDir, dest);
-  const destDir = path.dirname(destPath);
-  
-  if (!fs.existsSync(srcPath)) {
-    return false;
-  }
-  
-  // Create destination directory if needed
-  if (!fs.existsSync(destDir)) {
-    fs.mkdirSync(destDir, { recursive: true });
-  }
-  
-  fs.copyFileSync(srcPath, destPath);
-  return true;
-}
-
 // Copy documentation files
 let successCount = 0;
 let totalCount = docMappings.length;
 
 for (const mapping of docMappings) {
   try {
-    let success = false;
-    
-    if (mapping.recursive) {
-      success = copyDirectory(mapping.source, mapping.destination);
-    } else {
-      success = copyFile(mapping.source, mapping.destination);
-    }
+    const success = copyDirectory(mapping.source, mapping.destination);
     
     if (success) {
       console.log(`   ✅ ${mapping.source} → ${mapping.destination} (${mapping.description})`);

@@ -13,6 +13,7 @@ This folder contains all the documentation for the React Native Web Vite Starter
 
 - **[Project Summary](./PROJECT_SUMMARY.md)** - Complete overview of what was built, features implemented, and technical achievements
 - **[Constitution](../.documentation/memory/constitution.md)** - Governing engineering principles, quality gates, and amendment policy
+- **[Copilot Instructions](../.github/copilot-instructions.md)** - Repository-specific AI code generation guidance aligned to the constitution
 
 ### Technical Deep Dives
 
@@ -48,6 +49,7 @@ documentation/
 ├── SETUP_GUIDE.md                             # Web-only setup (reference)
 ├── PROJECT_SUMMARY.md                         # Project achievements and overview
 ├── ../.documentation/memory/constitution.md   # Engineering constitution and governance
+├── ../.github/copilot-instructions.md         # AI code generation guidance
 ├── JOKE_FUNCTIONALITY_ANALYSIS.md             # Technical analysis of API integration
 ├── THE_BUILDING_OF_REACT_NATIVE_WEB_START.md # Development journey narrative
 ├── GITHUB_PAGES_PUBLISHING.md                 # Deployment guide
@@ -69,6 +71,10 @@ Start with the **[Complete Setup Guide](./COMPLETE_SETUP_GUIDE.md)** - it contai
 ### For Project Overview
 
 Check the **[Project Summary](./PROJECT_SUMMARY.md)** to understand what features are implemented and the technical architecture.
+
+### For Governance and Code Generation
+
+Start with the **[Constitution](../.documentation/memory/constitution.md)** for policy authority, then use **[Copilot Instructions](../.github/copilot-instructions.md)** for implementation-level AI guidance that follows the constitution.
 
 ### For Technical Deep Dive
 

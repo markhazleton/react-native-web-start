@@ -49,15 +49,6 @@ jobs:
       - name: Security audit
         run: npm run security:check
 
-      - name: Generate build info
-        run: npm run generate-build-info
-        env:
-          GITHUB_SHA: ${{ github.sha }}
-          NODE_ENV: production
-
-      - name: Copy documentation
-        run: mkdir -p public/documentation && cp -r documentation/* public/documentation/ && cp README.md public/documentation/
-
       - name: Build project
         run: npm run build
         env:

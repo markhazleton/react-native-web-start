@@ -10,10 +10,18 @@ const __dirname = path.dirname(__filename);
 
 // Function to get Git information
 function getGitInfo() {
+  const runGitCommand = (command) => {
+    try {
+      return execSync(command, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    } catch {
+      return '';
+    }
+  };
+
   try {
-    const gitCommit = execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim();
-    const gitBranch = execSync('git rev-parse --abbrev-ref HEAD', { encoding: 'utf8' }).trim();
-    const gitTag = execSync('git describe --tags --exact-match 2>/dev/null || echo ""', { encoding: 'utf8' }).trim();
+    const gitCommit = runGitCommand('git rev-parse HEAD');
+    const gitBranch = runGitCommand('git rev-parse --abbrev-ref HEAD');
+    const gitTag = runGitCommand('git describe --tags --exact-match');
     
     return {
       commit: gitCommit,

@@ -17,6 +17,7 @@ export default [
         ecmaFeatures: {
           jsx: true,
         },
+        warnOnUnsupportedTypeScriptVersion: false,
       },
       globals: {
         console: 'readonly',
@@ -47,7 +48,8 @@ export default [
       ],
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
-      'no-unused-vars': 'warn',
+      // Use the TypeScript-aware rule to avoid duplicate/incorrect reports.
+      'no-unused-vars': 'off',
       'react/prop-types': 'off', // We use TypeScript for prop validation
       'react/react-in-jsx-scope': 'off', // Not needed in React 17+
       'no-console': ['warn', { allow: ['warn', 'error'] }],

@@ -1,19 +1,18 @@
 <!--
 Sync Impact Report
-- Version change: template -> 1.0.0
+- Version change: 1.0.0 -> 1.1.0
 - Modified principles:
   - Template Principle 1 -> I. Type Safety First (NON-NEGOTIABLE)
   - Template Principle 2 -> II. Test-Backed Changes (NON-NEGOTIABLE)
   - Template Principle 3 -> III. CI Quality Gates Before Release (NON-NEGOTIABLE)
   - Template Principle 4 -> IV. Monorepo Boundaries and Shared-First Design
   - Template Principle 5 -> V. Operational Clarity: Logging and Errors
-- Added sections: Additional Constraints, Development Workflow
+- Added principles:
+  - VI. AI-Assisted Code Generation Consistency
+- Added sections: None
 - Removed sections: None
 - Templates requiring updates:
-  - ✅ updated: .documentation/templates/plan-template.md
-  - ✅ updated: .documentation/templates/spec-template.md
-  - ✅ updated: .documentation/templates/tasks-template.md
-  - ✅ updated: documentation/README.md
+  - ✅ added: .github/copilot-instructions.md
 - Follow-up TODOs: None
 -->
 
@@ -61,11 +60,21 @@ script and tooling logs MAY be verbose when they improve diagnosis.
 Rationale: current logging is useful but inconsistent. Explicit guidance enables
 gradual standardization without disrupting existing workflows.
 
+### VI. AI-Assisted Code Generation Consistency
+AI-assisted code generation guidance MUST remain aligned with this constitution
+through the repository file `/.github/copilot-instructions.md`. In the event of
+conflict, this constitution is authoritative.
+
+Rationale: codified alignment reduces drift between governance and generated
+changes while keeping implementation guidance discoverable for contributors.
+
 ## Additional Constraints
 
 - Node.js and npm engine baselines defined in `package.json` MUST be honored.
 - Formatting and linting MUST use repository-configured tools and config files.
 - Security checks MUST stay integrated in CI for deployment-bound workflows.
+- `documentation/**` is the source of truth for docs content; `public/documentation/**`
+  and `dist/**` are generated artifacts and SHOULD NOT be manually maintained as source.
 - Coverage thresholds MAY evolve incrementally, but any reduction in thresholds
 	MUST be explicitly justified in a pull request.
 
@@ -81,6 +90,10 @@ gradual standardization without disrupting existing workflows.
 This constitution supersedes ad-hoc development preferences for this repository.
 In conflicts, this document takes precedence over generated templates unless a
 template is explicitly amended to align.
+
+Implementation guidance for AI/code generation lives in
+`/.github/copilot-instructions.md` and MUST remain consistent with this
+constitution.
 
 Amendment Procedure:
 1. Propose amendments through a pull request that includes a rationale,
@@ -98,4 +111,4 @@ Compliance Review Expectations:
 - Task artifacts MUST reflect test and quality-gate obligations.
 - Reviewers SHOULD reject changes that violate NON-NEGOTIABLE principles.
 
-**Version**: 1.0.0 | **Ratified**: 2026-03-29 | **Last Amended**: 2026-03-29
+**Version**: 1.1.0 | **Ratified**: 2026-03-29 | **Last Amended**: 2026-03-29

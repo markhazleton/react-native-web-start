@@ -87,7 +87,7 @@ const DocumentationReaderScreen: React.FC<DocumentationReaderScreenProps> = ({ f
           />
         )
       }
-    } catch (error) {
+    } catch {
       // Switch to basic renderer if HTML renderer fails
       if (useHtmlRenderer) {
         setUseHtmlRenderer(false)
