@@ -2,7 +2,7 @@
 import '@testing-library/jest-dom'
 
 // Mock documentation service to avoid import.meta issues
-jest.mock('./packages/shared/src/services/documentationService', () => ({
+jest.mock('../packages/shared/src/services/documentationService', () => ({
   DocumentationService: {
     getDocumentationFiles: jest.fn(() => Promise.resolve([])),
     getDocumentationContent: jest.fn(() => Promise.resolve('# Mock Documentation')),

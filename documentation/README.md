@@ -12,6 +12,7 @@ This folder contains all the documentation for the React Native Web Vite Starter
 ### Project Information
 
 - **[Project Summary](./PROJECT_SUMMARY.md)** - Complete overview of what was built, features implemented, and technical achievements
+- **[Constitution](../.documentation/memory/constitution.md)** - Governing engineering principles, quality gates, and amendment policy
 
 ### Technical Deep Dives
 
@@ -46,6 +47,7 @@ documentation/
 ├── COMPLETE_SETUP_GUIDE.md                    # Full cross-platform setup
 ├── SETUP_GUIDE.md                             # Web-only setup (reference)
 ├── PROJECT_SUMMARY.md                         # Project achievements and overview
+├── ../.documentation/memory/constitution.md   # Engineering constitution and governance
 ├── JOKE_FUNCTIONALITY_ANALYSIS.md             # Technical analysis of API integration
 ├── THE_BUILDING_OF_REACT_NATIVE_WEB_START.md # Development journey narrative
 ├── GITHUB_PAGES_PUBLISHING.md                 # Deployment guide

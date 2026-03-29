@@ -88,33 +88,20 @@ const JokesScreen: React.FC = () => {
   const [joke, setJoke] = useState<JokeResponse | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [clickCount, setClickCount] = useState(0) // Debug counter
-  const [debugInfo, setDebugInfo] = useState<string>('Component mounted') // Debug info
 
   const fetchRandomJoke = useCallback(async () => {
-    console.warn('🔍 fetchRandomJoke called')
-    setClickCount(prev => prev + 1) // Increment debug counter
-    setDebugInfo('Starting random joke fetch...')
     setLoading(true)
     setError(null)
     
     try {
-      console.warn('🌐 Calling JokeApiService.getRandomJoke()')
-      setDebugInfo('Calling API...')
       const jokeData = await JokeApiService.getRandomJoke()
-      console.warn('✅ Joke data received:', jokeData)
-      setDebugInfo('API call successful')
       setJoke(jokeData)
     } catch (err) {
-      console.error('❌ Error in fetchRandomJoke:', err)
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch joke'
       setError(errorMessage)
-      setDebugInfo(`Error: ${errorMessage}`)
       
       // Show platform-appropriate error message
-      if (Platform.OS === 'web') {
-        console.error('Error fetching joke:', errorMessage)
-      } else {
+      if (Platform.OS !== 'web') {
         Alert.alert('Error', errorMessage)
       }
     } finally {
@@ -123,28 +110,17 @@ const JokesScreen: React.FC = () => {
   }, [])
 
   const fetchProgrammingJoke = useCallback(async () => {
-    console.warn('🔍 fetchProgrammingJoke called')
-    setClickCount(prev => prev + 1) // Increment debug counter
-    setDebugInfo('Starting programming joke fetch...')
     setLoading(true)
     setError(null)
     
     try {
-      console.warn('🌐 Calling JokeApiService.getProgrammingJoke()')
-      setDebugInfo('Calling Programming API...')
       const jokeData = await JokeApiService.getProgrammingJoke()
-      console.warn('✅ Programming joke data received:', jokeData)
-      setDebugInfo('Programming API call successful')
       setJoke(jokeData)
     } catch (err) {
-      console.error('❌ Error in fetchProgrammingJoke:', err)
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch programming joke'
       setError(errorMessage)
-      setDebugInfo(`Programming Error: ${errorMessage}`)
       
-      if (Platform.OS === 'web') {
-        console.error('Error fetching programming joke:', errorMessage)
-      } else {
+      if (Platform.OS !== 'web') {
         Alert.alert('Error', errorMessage)
       }
     } finally {
@@ -178,8 +154,6 @@ const JokesScreen: React.FC = () => {
       <View style={styles.header}>
         <Text style={styles.title}>😂 Joke Generator</Text>
         <Text style={styles.subtitle}>Powered by JokeAPI</Text>
-        <Text style={styles.subtitle}>Debug: Clicks = {clickCount}</Text>
-        <Text style={styles.subtitle}>Status: {debugInfo}</Text>
       </View>
 
       <View style={styles.buttonContainer}>

@@ -88,7 +88,6 @@ const DocumentationReaderScreen: React.FC<DocumentationReaderScreenProps> = ({ f
         )
       }
     } catch (error) {
-      console.warn('Renderer failed, using fallback:', error)
       // Switch to basic renderer if HTML renderer fails
       if (useHtmlRenderer) {
         setUseHtmlRenderer(false)
