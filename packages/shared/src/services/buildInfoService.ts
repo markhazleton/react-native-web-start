@@ -13,7 +13,7 @@ export interface BuildInfo {
   commit: string;
   commitShort: string;
   gitBranch: string;
-  gitTag: string;
+  gitTag: string | null;
   environment: string;
   buildNumber: string;
   nodeVersion: string;
