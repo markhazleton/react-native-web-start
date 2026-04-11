@@ -75,7 +75,7 @@
     "rebuild": "npm run clean && npm run build"
   },
   "dependencies": {
-    "marked": "^17.0.5",
+    "marked": "^17.0.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-native": "^0.84.1",
@@ -109,12 +109,12 @@
     "@types/react-dom": "^19.2.3",
     "@types/react-native": "^0.73.0",
     "@types/react-test-renderer": "^19.1.0",
-    "@typescript-eslint/eslint-plugin": "^8.57.2",
-    "@typescript-eslint/parser": "^8.57.2",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
     "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.27",
     "babel-jest": "^30.3.0",
-    "eslint": "^10.1.0",
+    "eslint": "^10.2.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
@@ -126,9 +126,9 @@
     "postcss": "^8.5.8",
     "prettier": "^3.8.1",
     "react-test-renderer": "^19.2.4",
-    "sass": "^1.98.0",
+    "sass": "^1.99.0",
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2",
-    "vite": "^8.0.3"
+    "vite": "^8.0.4"
   }
 }
