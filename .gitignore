@@ -12,6 +12,7 @@ yarn-error.log*
 # Production builds
 dist/
 build/
+coverage/
 public/documentation/
 
 # Environment variables

@@ -23,7 +23,7 @@ This comprehensive guide provides step-by-step instructions to create a React Na
 
 ### Required for All Platforms
 
-- **Node.js** (version 18 or higher)
+- **Node.js** (version 20.19.4 or higher)
 - **npm** or **yarn** package manager
 - **Git** (for version control)
 
@@ -79,37 +79,38 @@ git init
 
 ```bash
 # Install React with latest versions
-npm install react@^19.2.3 react-dom@^19.2.3
+npm install react@^19.2.5 react-dom@^19.2.5
 
 # Install React Native and React Native Web
-npm install react-native@^0.83.1 react-native-web@^0.21.2
+npm install react-native@^0.85.0 react-native-web@^0.21.2
 ```
 
 ### Step 5: Install Development Dependencies
 
 ```bash
 # Install Vite and React plugin
-npm install -D vite@^7.3.1 @vitejs/plugin-react@^5.1.2
+npm install -D vite@^8.0.8 @vitejs/plugin-react@^6.0.1
 
 # Install TypeScript and types
-npm install -D typescript@^5.9.3 @types/react@^19.2.8 @types/react-dom@^19.2.3
+npm install -D typescript@^6.0.2 @types/react@^19.2.14 @types/react-dom@^19.2.3
 
-# Install React Native development tools  
-npm install -D @babel/core@^7.28.6 @babel/preset-env@^7.28.6
-npm install -D @react-native/babel-preset@^0.83.1
-npm install -D @react-native/metro-config@^0.83.1
-npm install -D @react-native/typescript-config@^0.83.1
+# Install React Native development tools
+npm install -D @babel/core@^7.29.0 @babel/preset-env@^7.29.2
+npm install -D @react-native/babel-preset@^0.85.0
+npm install -D @react-native/jest-preset@^0.85.0
+npm install -D @react-native/metro-config@^0.85.0
+npm install -D @react-native/typescript-config@^0.85.0
 
 # Install styling tools
-npm install -D tailwindcss@^4.1.18 @tailwindcss/postcss@^4.1.18
-npm install -D sass@^1.97.2 postcss@^8.5.6
+npm install -D tailwindcss@^4.2.2 @tailwindcss/postcss@^4.2.2
+npm install -D sass@^1.99.0 postcss@^8.5.8
 
 # Install testing and development tools
-npm install -D jest@^30.2.0 @types/jest@^30.0.0
-npm install -D eslint@^9.39.2 prettier@^3.7.4
+npm install -D jest@^30.3.0 @types/jest@^30.0.0
+npm install -D eslint@^10.2.0 prettier@^3.8.2
 
 # Install markdown rendering
-npm install marked@^17.0.1 react-native-render-html@^6.3.4
+npm install marked@^17.0.6 react-native-render-html@^6.3.4
 ```
 
 ### Step 6: Install Dependencies with Compatibility Fix
