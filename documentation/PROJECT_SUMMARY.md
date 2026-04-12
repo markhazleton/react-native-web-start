@@ -15,18 +15,18 @@ A comprehensive **React Native Web starter application** using **Vite** that sup
 
 ### 🛠️ Technical Implementation
 
-- **TypeScript 5.9.3**: Full type safety across the application
-- **React 19.2.3**: Latest React with modern features
-- **React Native 0.83.1**: Cross-platform mobile framework
-- **Vite 7.3.1**: Lightning-fast development server and build tool
+- **TypeScript 6.0.2**: Full type safety across the application
+- **React 19.2.5**: Latest React with modern features
+- **React Native 0.85.0**: Cross-platform mobile framework
+- **Vite 8.0.8**: Lightning-fast development server and build tool
 - **API Integration**: JokeAPI integration with error handling
 - **Platform-Specific Styling**: Different styles for web vs mobile using Platform.select()
 - **Modern Tooling**: Vite for web, Metro for mobile
 - **Cross-Platform Navigation**: Tab-based navigation system with modern UI
 - **Monorepo Structure**: Organized packages for shared, web, and mobile code
-- **Tailwind CSS 4.1.18**: Utility-first CSS framework
-- **Sass 1.97.2**: CSS preprocessor with variables and mixins
-- **Markdown Rendering**: Multiple renderers using marked (v17.0.1)
+- **Tailwind CSS 4.2.2**: Utility-first CSS framework
+- **Sass 1.99.0**: CSS preprocessor with variables and mixins
+- **Markdown Rendering**: Multiple renderers using marked (v17.0.6)
 
 ### 📱 Application Features
 
@@ -167,7 +167,7 @@ I've created comprehensive documentation:
 ## 🎯 Key Achievements
 
 1. ✅ **Single Codebase**: Write once, run everywhere (Web, iOS, Android)
-2. ✅ **Modern Stack**: React 19.2.3, React Native 0.83.1, Vite 7.3.1, TypeScript 5.9.3
+2. ✅ **Modern Stack**: React 19.2.5, React Native 0.85.0, Vite 8.0.8, TypeScript 6.0.2
 3. ✅ **API Integration**: Real-world example with JokeAPI and comprehensive error handling
 4. ✅ **Production Ready**: Complete build pipelines for all platforms
 5. ✅ **Developer Experience**: Fast HMR, TypeScript, ESLint, Prettier
@@ -182,9 +182,9 @@ I've created comprehensive documentation:
 ## 🔧 Technical Highlights
 
 - **React Native Web 0.21.2**: Seamless component sharing between platforms
-- **Vite 7.3.1 Configuration**: Optimized for React Native Web compatibility with HMR
-- **TypeScript 5.9.3 Integration**: Full type safety with strict configurations
-- **Metro 0.83.1 Configuration**: Mobile bundler with proper alias setup
+- **Vite 8.0.8 Configuration**: Optimized for React Native Web compatibility with HMR
+- **TypeScript 6.0.2 Integration**: Full type safety with strict configurations
+- **Metro / React Native 0.85.0 Tooling**: Mobile bundler and preset stack aligned to the current React Native release family
 - **Cross-Platform Styling**: Platform-specific optimizations using Platform.select()
 - **Error Boundaries**: Robust error handling across platforms
 - **Build Information Service**: Dynamic build metadata generation

@@ -1,9 +1,9 @@
 # 🚀 React Native Web Vite Starter
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-blue.svg)](https://www.typescriptlang.org/)
-[![React Native](https://img.shields.io/badge/React%20Native-0.83.1-blue.svg)](https://reactnative.dev/)
-[![Vite](https://img.shields.io/badge/Vite-7.3.1-646CFF.svg)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0.2-blue.svg)](https://www.typescriptlang.org/)
+[![React Native](https://img.shields.io/badge/React%20Native-0.85.0-blue.svg)](https://reactnative.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8.0.8-646CFF.svg)](https://vitejs.dev/)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen.svg)](https://markhazleton.github.io/react-native-web-start)
 
 > **A production-ready, enterprise-grade starter template for building cross-platform applications using React Native Web, Vite, and TypeScript. Write once, deploy everywhere: Web, iOS, and Android.**
@@ -73,16 +73,16 @@
 
 | Component | Technology | Version | Purpose |
 |-----------|------------|---------|---------|
-| **Frontend Framework** | React Native | 0.83.1 | Cross-platform mobile development |
+| **Frontend Framework** | React Native | 0.85.0 | Cross-platform mobile development |
 | **Web Compatibility** | React Native Web | 0.21.2 | Web platform support |
-| **Build Tool** | Vite | 7.3.1 | Fast development and production builds |
-| **Language** | TypeScript | 5.9.3 | Type safety and developer experience |
-| **Bundler (Mobile)** | Metro | 0.83.1 | React Native bundling and transformation |
-| **Styling** | Tailwind CSS | 4.1.18 | Utility-first CSS framework |
-| **CSS Preprocessor** | Sass | 1.97.2 | Enhanced CSS with variables and mixins |
-| **UI Framework** | React | 19.2.3 | Modern React with latest features |
+| **Build Tool** | Vite | 8.0.8 | Fast development and production builds |
+| **Language** | TypeScript | 6.0.2 | Type safety and developer experience |
+| **Bundler (Mobile)** | Metro | React Native 0.85 toolchain | React Native bundling and transformation |
+| **Styling** | Tailwind CSS | 4.2.2 | Utility-first CSS framework |
+| **CSS Preprocessor** | Sass | 1.99.0 | Enhanced CSS with variables and mixins |
+| **UI Framework** | React | 19.2.5 | Modern React with latest features |
 | **HTTP Client** | Fetch API | Native | API communication and data fetching |
-| **Markdown Processing** | Marked | 17.0.1 | Markdown parsing and rendering |
+| **Markdown Processing** | Marked | 17.0.6 | Markdown parsing and rendering |
 
 ### **Project Structure**
 
@@ -133,7 +133,7 @@ react-native-web-start/
 
 ### **Prerequisites**
 
-- 📦 **Node.js** 18+ ([Download](https://nodejs.org/))
+- 📦 **Node.js** 20.19.4+ ([Download](https://nodejs.org/))
 - 📱 **Mobile Development** (Optional):
   - iOS: Xcode 14+ (macOS only)
   - Android: Android Studio with SDK
@@ -144,9 +144,11 @@ react-native-web-start/
 # Clone and setup
 git clone https://github.com/markhazleton/react-native-web-start.git
 cd react-native-web-start
-npm install --legacy-peer-deps
+npm install
 npm run web
 ```
+
+Use plain `npm install` on the current validated stack. `--legacy-peer-deps` is no longer required for the repository baseline.
 
 🎉 **That's it!** Open [http://localhost:3000](http://localhost:3000) to see your app running.
 
@@ -250,8 +252,8 @@ Access comprehensive documentation directly in the application:
 
 | Technology | Purpose | Features |
 |------------|---------|----------|
-| **Tailwind CSS 4.1.18** | Utility-first CSS framework | Modern utility classes, responsive design |
-| **Sass 1.97.2** | CSS preprocessor | Variables, mixins, enhanced CSS features |
+| **Tailwind CSS 4.2.2** | Utility-first CSS framework | Modern utility classes, responsive design |
+| **Sass 1.99.0** | CSS preprocessor | Variables, mixins, enhanced CSS features |
 | **PostCSS** | CSS transformation | Autoprefixer, Tailwind processing |
 | **Platform.select()** | Cross-platform styling | Platform-specific style overrides |
 | **CSS Custom Properties** | Design tokens | Modern CSS variables for consistent theming |
