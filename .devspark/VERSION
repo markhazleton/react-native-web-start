@@ -1,4 +1,4 @@
-version: 1.5.0
-installed: 2026-04-11
-method: copilot-template-migration
+version: 2.2.1
+installed: 2026-05-11
+method: claude-code-quickstart
 migrated-from: legacy-command-pack

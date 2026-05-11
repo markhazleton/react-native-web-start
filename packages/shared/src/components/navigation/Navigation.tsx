@@ -4,6 +4,7 @@ import WelcomeScreen from '../screens/WelcomeScreen'
 import JokesScreen from '../screens/JokesScreen'
 import DocumentationScreen from '../screens/DocumentationScreen'
 import TabBar from './TabBar'
+import Footer from '../common/Footer'
 
 const Navigation: React.FC = () => {
   const [activeTab, setActiveTab] = useState('home')
@@ -28,6 +29,7 @@ const Navigation: React.FC = () => {
       <View style={styles.content}>
         {renderScreen()}
       </View>
+      <Footer />
     </View>
   )
 }

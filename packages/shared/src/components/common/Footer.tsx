@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Platform } from 'react-native'
+import { View, Text, StyleSheet, Platform, Linking } from 'react-native'
 import { BuildInfoService } from '../../services/buildInfoService'
 
 const Footer: React.FC = () => {
@@ -18,6 +18,26 @@ const Footer: React.FC = () => {
           <Text style={styles.buildText}>Built: {buildInfo.buildDate}</Text>
           <Text style={styles.envText}>Environment: {buildInfo.environment}</Text>
         </View>
+      </View>
+      <View style={styles.attributionRow}>
+        <Text style={styles.attributionText}>
+          {'Built by '}
+          <Text
+            style={styles.link}
+            onPress={() => Linking.openURL('https://markhazleton.com')}
+            accessibilityRole="link"
+          >
+            Mark Hazleton
+          </Text>
+          {' · '}
+          <Text
+            style={styles.link}
+            onPress={() => Linking.openURL('https://makeboldspark.com')}
+            accessibilityRole="link"
+          >
+            Make Bold Spark
+          </Text>
+        </Text>
       </View>
     </View>
   )
@@ -94,6 +114,22 @@ const styles = StyleSheet.create({
     color: '#64748b',
     fontFamily: Platform.OS === 'web' ? 'ui-monospace, monospace' : 'Courier',
     fontWeight: '500',
+  },
+  attributionRow: {
+    alignItems: 'center',
+    marginTop: 6,
+    paddingTop: 6,
+    borderTopWidth: 1,
+    borderTopColor: '#f1f5f9',
+  },
+  attributionText: {
+    fontSize: 11,
+    color: '#94a3b8',
+    textAlign: 'center',
+  },
+  link: {
+    color: '#3b82f6',
+    textDecorationLine: 'underline',
   },
 })
 

@@ -28,9 +28,21 @@
 - [🏆 Best Practices](#-best-practices)
 - [🤝 Contributing](#-contributing)
 - [📊 Project Status](#-project-status)
+- [About](#about)
 - [🙏 Acknowledgments](#-acknowledgments)
 
 </details>
+
+---
+
+## About
+
+React Native Web Start is a production-ready starter template demonstrating cross-platform development with React Native Web, Vite, and TypeScript. Write once, deploy everywhere: Web, iOS, and Android.
+
+**Live Site**: [https://markhazleton.github.io/react-native-web-start/](https://markhazleton.github.io/react-native-web-start/)
+
+> Built by [Mark Hazleton](https://markhazleton.com) — Solutions Architect
+> React Native Web Start is part of the [Make Bold Spark](https://makeboldspark.com) portfolio of technical demonstrations.
 
 ---
 
@@ -556,7 +568,7 @@ We welcome contributions! Please see our contributing guidelines:
 
 ---
 
-**Built with ❤️ by [Mark Hazleton](https://github.com/markhazleton)**
+**Built with ❤️ by [Mark Hazleton](https://markhazleton.com) — Solutions Architect**
 
 *Licensed under [MIT License](./LICENSE) | Copyright © 2025*
 
