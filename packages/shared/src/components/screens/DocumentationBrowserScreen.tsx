@@ -19,16 +19,11 @@ interface DocumentationBrowserScreenProps {
 
 const DocumentationBrowserScreen: React.FC<DocumentationBrowserScreenProps> = ({ onFileSelect }) => {
   const [files, setFiles] = useState<DocumentationFile[]>([])
-  const [filteredFiles, setFilteredFiles] = useState<DocumentationFile[]>([])
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    loadDocumentationFiles()
-  }, [])
-
-  const loadDocumentationFiles = async () => {
+  const loadDocumentationFiles = React.useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
@@ -43,24 +38,22 @@ const DocumentationBrowserScreen: React.FC<DocumentationBrowserScreenProps> = ({
     } finally {
       setLoading(false)
     }
-  }
-
-  const filterFiles = React.useCallback(() => {
-    if (!searchQuery.trim()) {
-      setFilteredFiles(files)
-    } else {
-      const query = searchQuery.toLowerCase()
-      const filtered = files.filter(file => 
-        file.name.toLowerCase().includes(query) ||
-        file.description.toLowerCase().includes(query)
-      )
-      setFilteredFiles(filtered)
-    }
-  }, [searchQuery, files])
+  }, [])
 
   useEffect(() => {
-    filterFiles()
-  }, [filterFiles])
+    loadDocumentationFiles()
+  }, [loadDocumentationFiles])
+
+  const filteredFiles = React.useMemo(() => {
+    if (!searchQuery.trim()) {
+      return files
+    }
+    const query = searchQuery.toLowerCase()
+    return files.filter(file =>
+      file.name.toLowerCase().includes(query) ||
+      file.description.toLowerCase().includes(query)
+    )
+  }, [searchQuery, files])
 
   const handleFilePress = (file: DocumentationFile) => {
     onFileSelect(file)

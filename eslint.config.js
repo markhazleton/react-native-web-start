@@ -42,6 +42,9 @@ export default [
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      // Flags the standard fetch-on-mount pattern used throughout this app;
+      // fully satisfying it requires adopting a data-fetching library.
+      'react-hooks/set-state-in-effect': 'warn',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
