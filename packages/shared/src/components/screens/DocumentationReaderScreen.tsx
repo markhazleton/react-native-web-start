@@ -45,8 +45,24 @@ const DocumentationReaderScreen: React.FC<DocumentationReaderScreenProps> = ({ f
   }, [file.name])
 
   useEffect(() => {
-    loadDocumentationContent()
-  }, [loadDocumentationContent])
+    const load = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const documentationContent = await DocumentationService.getDocumentationContent(file.name)
+        setContent(documentationContent)
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to load documentation content'
+        setError(errorMessage)
+        if (Platform.OS === 'web') {
+          Alert.alert('Error', errorMessage)
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+    load()
+  }, [file.name])
 
   const renderError = () => (
     <View style={styles.errorState}>

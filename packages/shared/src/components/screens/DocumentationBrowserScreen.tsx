@@ -41,8 +41,24 @@ const DocumentationBrowserScreen: React.FC<DocumentationBrowserScreenProps> = ({
   }, [])
 
   useEffect(() => {
-    loadDocumentationFiles()
-  }, [loadDocumentationFiles])
+    const load = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const documentationFiles = await DocumentationService.getDocumentationFiles()
+        setFiles(documentationFiles)
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to load documentation files'
+        setError(errorMessage)
+        if (Platform.OS === 'web') {
+          Alert.alert('Error', errorMessage)
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+    load()
+  }, [])
 
   const filteredFiles = React.useMemo(() => {
     if (!searchQuery.trim()) {

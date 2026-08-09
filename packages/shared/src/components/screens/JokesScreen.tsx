@@ -129,8 +129,26 @@ const JokesScreen: React.FC = () => {
   }, [])
 
   useEffect(() => {
-    fetchRandomJoke()
-  }, [fetchRandomJoke])
+    const load = async () => {
+      setLoading(true)
+      setError(null)
+
+      try {
+        const jokeData = await JokeApiService.getRandomJoke()
+        setJoke(jokeData)
+      } catch (err) {
+        const errorMessage = err instanceof Error ? err.message : 'Failed to fetch joke'
+        setError(errorMessage)
+
+        if (Platform.OS !== 'web') {
+          Alert.alert('Error', errorMessage)
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+    load()
+  }, [])
 
   const renderJoke = () => {
     if (!joke) return null
