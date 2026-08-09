@@ -20,10 +20,9 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "typeRoots": ["./node_modules/@types", "./src/types"],
-    "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@shared/*": ["packages/shared/src/*"]
+      "@/*": ["./src/*"],
+      "@shared/*": ["./packages/shared/src/*"]
     }
   },
   "include": ["src"],
