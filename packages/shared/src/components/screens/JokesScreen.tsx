@@ -196,7 +196,7 @@ const JokesScreen: React.FC = () => {
         )}
 
         {!loading && !error && joke && (
-          <View style={styles.card} key={joke.id || Math.random()}>
+          <View style={styles.card} key={joke.id ?? `${joke.category}-${joke.type}`}>
             <Text style={styles.categoryText}>Category: {joke.category}</Text>
             {renderJoke()}
             <View style={styles.jokeFooter}>
