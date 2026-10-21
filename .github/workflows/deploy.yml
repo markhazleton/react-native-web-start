@@ -31,11 +31,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm ci
 
       - name: Run linting
         run: npm run lint
@@ -48,10 +48,8 @@ jobs:
 
       - name: Security audit
         run: npm run security:check
-        # image-size (pulled in transitively by react-native's metro bundler, a
-        # dev-only build tool) has a known high-severity advisory with no fix
-        # published upstream. Don't block deploys on an issue we can't resolve;
-        # Dependabot still opens PRs the moment a fix becomes available.
+        # Unpatched braces and sprintf-js advisories remain in the toolchain.
+        # See documentation/DEPENDENCY_BASELINE.md for paths and follow-up.
         continue-on-error: true
 
       - name: Build project
